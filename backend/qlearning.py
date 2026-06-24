@@ -4,8 +4,8 @@ import random
 class QLearningAgent:
     def __init__(
         self,
-        n_estados, # Estados del agente
-        n_acciones, # Acciones
+        n_estados, # Cantidad de situaciones posibles 
+        n_acciones, # Número de acciones posibles
         tasa_aprendizaje=0.1, # Alfa. Peso de la información frente a la experiencia antigua
         factor_descuento=0.95, # Gamma. Peso de las recompensas futuras frente a las inmediatas
         epsilon=0.2 # Equilibra exploración con explotación
