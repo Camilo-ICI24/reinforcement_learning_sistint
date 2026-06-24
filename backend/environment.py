@@ -47,11 +47,11 @@ class NetworkEnvironment:
         else: # Estado Peligroso
             return self.recompensa_peligroso(accion)
         
-    def proximo_estado(self): # Cambia el estado del agente aleatoriamentes
+    def siguiente_estado(self): # Cambia el estado del agente aleatoriamentes
         return random.choice(self.estados)
     
     def paso(self, estado, accion): # Interacción del agente con el ambiente
-        recompensa = self.obtener_recompensa(estado, accion)
+        recompensa = self.obtener_recompensa_por_estado(estado, accion)
         proximo_estado = self.siguiente_estado()
 
         return proximo_estado, recompensa 

@@ -20,7 +20,7 @@ class QLearningAgent:
         self.gamma = factor_descuento
         self.epsilon = epsilon
         self.epsilon_min = epsilon_min
-        self.delta_epsilon = epsilon_decay
+        self.epsilon_decay = epsilon_decay
 
         # Tabla Q
         self.q_table = np.zeros((n_estados, n_acciones))

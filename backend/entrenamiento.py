@@ -12,7 +12,7 @@ def entrenar(): # Proceso de entrenamiento del agente de aprendizaje por refuerz
 
     for episodio_aprendizaje in range(EPISODIOS):
 
-        estado = ambiente.reset()
+        estado = ambiente.reiniciar_estados()
         recompensa_total = 0
         aciertos_conseguidos = 0
         acciones_tomadas_aprendizaje = 0
