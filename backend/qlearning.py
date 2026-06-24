@@ -8,7 +8,9 @@ class QLearningAgent:
         n_acciones, # Número de acciones posibles
         tasa_aprendizaje=0.1, # Alfa. Peso de la información frente a la experiencia antigua
         factor_descuento=0.95, # Gamma. Peso de las recompensas futuras frente a las inmediatas
-        epsilon=0.2 # Equilibra exploración con explotación
+        epsilon=0.2, # Equilibra exploración con explotación
+        epsilon_min=0.05, # Minimo valor de épsilon
+        epsilon_decay=0.995 # Decrecimiento de épsilon
     ):
 
         self.n_estados = n_estados
@@ -17,6 +19,8 @@ class QLearningAgent:
         self.alpha = tasa_aprendizaje
         self.gamma = factor_descuento
         self.epsilon = epsilon
+        self.epsilon_min = epsilon_min
+        self.delta_epsilon = epsilon_decay
 
         # Tabla Q
         self.q_table = np.zeros((n_estados, n_acciones))
@@ -40,5 +44,8 @@ class QLearningAgent:
 
         self.q_table[estado, accion] = nuevo_valor
 
-    def get_q_table(self):
+    def obtener_q_table(self):
         return self.q_table.tolist()
+    
+    def decaer_epsilon(self):
+        self.epsilon = max(self.epsilon_min, self.epsilon * self.epsilon_decay)
