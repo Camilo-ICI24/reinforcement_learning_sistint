@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detector de Anomalías con Aprendizaje por Refuerzo</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href=
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Diseño del fondo de la pantalla -->
+    <canvas id="background-canvas"></canvas>
+
+    <header class="topbar">
+        <div class="socials">
+
+            <a href="https://github.com/Camilo-ICI24" target="_blank">
+                <i class="fa-brands fa-github"></i>
+            </a>
+
+            <a href="https://instagram.com/kamilo_ki_ondah" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="https://tiktok.com/@ccifuentes_ufro_ici" target="_blank">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+
+        </div>
+
+    </header>
+
+    <!-- Pantalla de inicio -->
+    <div id="home" class="view active">
+
+        <h1>Detector de Anomalías con Aprendizaje por Refuerzo</h1>
+
+        <p>Aprendizaje por Refuerzo aplicado a detección de anomalías</p>
+
+        <button class="home-button" onclick="startApp()">
+            Llévame allá!
+        </button>
+
+    </div>
+
+    <!-- Pantalla de carga -->
+    <div id="loading" class="view hidden">
+
+        <h2>Entrenando agente...</h2>
+
+        <div class="spinner"></div>
+
+        <p id="fact"></p>
+
+    </div>
+
+
+    <!-- Pantalla de Dashboard -->
+    <div id="dashboard" class="view hidden">
+
+        <h2>Dashboard del Agente</h2>
+
+        <button onclick="trainAgent()">Entrenar agente</button>
+
+        <button onclick="getMetrics()">Ver métricas</button>
+
+        <button onclick="getQTable()">Ver Q-Table</button>
+
+        <hr>
+
+        <!-- Obtención de Métricas -->
+        <div id="metrics"></div>
+
+    <!-- Sección del Simulador -->
+        <div>
+
+            <h3>Simulador de Anomalías</h3>
+
+            <select id="stateSelect">
+                <option value="0">Okay</option>
+                <option value="1">Sospechoso</option>
+                <option value="2">Peligroso</option>
+            </select>
+
+            <button onclick="simulate()">Consultar agente</button>
+
+            <p id="result"></p>
+        </div>
+
+    </div>
+
+    <!-- Lógica interna -->
+    <script src="./js/particulas.js"></script>
+    <script src="./js/app.js"></script>
+
+    </body>
+
+</html>

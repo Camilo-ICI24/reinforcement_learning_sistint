@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #0f172a; /* Este color es azul oscuro elegante */
+    color: #e2e8f0; /* Este otro es blanco */
+}
+
+/* Barra superior para redes */
+.topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 40px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.socials {
+    display: flex;
+    gap: 20px;
+}
+
+.socials a {
+    color: white;
+    font-size: 1.4rem;
+    opacity: 0.8;
+    transition: all 0.25s ease;
+}
+
+.socials a:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* Contenedor de vistas */
+.view {
+    display: none;
+    min-height: 100vh;
+    padding: 40px;
+    text-align: center;
+}
+
+.view.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Títulos */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #38bdf8;
+}
+
+h2 {
+    color: #60a5fa;
+}
+
+/* Botones */
+button {
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    border: none;
+    padding: 12px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* Estilo nuevo al tener cursor encima */
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+/* Botón principal */
+.home-button {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    background: #020617;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background-image:
+        linear-gradient(#020617, #020617),
+        linear-gradient(135deg, #ff004c, #ff9f1c, #f9f871, #00f5d4, #38bdf8, #9b5de5, #ff004c);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.08);
+}
+
+/* Nuevo estilo del botón principal al tener el cursor encima */
+.home-button:hover {
+    color: #020617;
+    background-image:
+        linear-gradient(135deg, #ff004c, #ff9f1c, #f9f871, #00f5d4, #38bdf8, #9b5de5),
+        linear-gradient(135deg, #ff004c, #ff9f1c, #f9f871, #00f5d4, #38bdf8, #9b5de5);
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.55);
+}
+
+/* Círculo de carga */
+.spinner {
+    margin: 20px auto;
+    width: 50px;
+    height: 50px;
+    border: 5px solid #334155;
+    border-top: 5px solid #38bdf8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* Tarjetas para métricas */
+.card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 10px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Select */
+select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #1e293b;
+    color: white;
+}
+
+/* Diseño del fondo de la pantalla */
+#background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #050816;
+}
