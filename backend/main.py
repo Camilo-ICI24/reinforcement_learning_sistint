@@ -49,3 +49,8 @@ def qtable():
         return { "error": "No se ha entrenado el agente todavía" }
 
     return { "q_table": agente_entrenado.obtener_q_table() }
+
+@app.get("/funcionamiento")
+def funcionamiento(estado: int):
+    accion = agente_entrenado.elegir_accion(estado)
+    return {"estado": estado, "accion": accion}
