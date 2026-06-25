@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif; /* Fuente de letra */
     background: #0f172a; /* Este color es azul oscuro elegante */
     color: #e2e8f0; /* Este otro es blanco */
 }
@@ -15,23 +15,63 @@ body {
     box-sizing: border-box;
     display: flex;
     justify-content: flex-end;
+    z-index: 2;
 }
 
 .socials {
     display: flex;
-    gap: 20px;
+    gap: 16px;
 }
 
 .socials a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 36px;
+    height: 36px;
+    padding: 0 0 0 8px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 6px;
     color: white;
     font-size: 1.4rem;
     opacity: 0.8;
-    transition: all 0.25s ease;
+    text-decoration: none;
+    transition: width 0.25s ease, padding 0.25s ease, opacity 0.25s ease, background 0.25s ease;
 }
 
-.socials a:hover {
+.socials a i {
+    flex: 0 0 20px;
+    text-align: center;
+}
+
+.socials a::after {
+    content: attr(data-label);
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-width 0.25s ease, opacity 0.25s ease;
+}
+
+.socials a:hover,
+.socials a:focus-visible {
+    width: 132px;
+    padding-right: 10px;
+    background: #0b1f3a;
     opacity: 1;
-    transform: translateY(-3px);
+}
+
+.socials a:hover::after,
+.socials a:focus-visible::after {
+    max-width: 90px;
+    opacity: 1;
 }
 
 /* Contenedor de vistas */
