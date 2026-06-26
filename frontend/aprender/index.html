@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprender | Detector de Anomalías</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="learn-body">
+    <main class="learn-shell">
+        <header class="learn-header cyber-panel neon-blue">
+            <div>
+                <p class="eyebrow">Módulo de aprendizaje</p>
+                <h1>Aprender</h1>
+                <p>Elige cómo quieres entender el aprendizaje por refuerzo aplicado a detección de anomalías.</p>
+            </div>
+
+            <a class="back-link" href="./index.html">
+                <i class="fa-solid fa-arrow-left"></i>
+                Inicio
+            </a>
+        </header>
+
+        <section class="learn-menu cyber-panel neon-green" aria-label="Opciones de aprendizaje">
+            <button class="learn-option" data-mode="semi">
+                <i class="fa-solid fa-layer-group"></i>
+                Aprendizaje Semi-Técnico
+            </button>
+
+            <button class="learn-option" data-mode="technical">
+                <i class="fa-solid fa-code"></i>
+                Aprendizaje Técnico
+            </button>
+
+            <button class="learn-option" data-action="simulation">
+                <i class="fa-solid fa-play"></i>
+                Simulación
+            </button>
+
+            <button class="learn-option" data-mode="practice">
+                <i class="fa-solid fa-flask"></i>
+                Vista Práctica
+            </button>
+        </section>
+
+        <section class="learn-workspace">
+            <div class="learn-console cyber-panel neon-yellow" aria-live="polite">
+                <div class="console-topline">
+                    <span id="console-mode">Sin ruta seleccionada</span>
+                    <span id="console-progress">0/0</span>
+                </div>
+
+                <div class="console-screen">
+                    <span class="console-prompt">&gt;</span>
+                    <p id="console-text">Escoge tu tipo de aprendizaje antes de comenzar</p>
+                    <span class="console-cursor" aria-hidden="true"></span>
+                </div>
+
+                <div class="console-actions" id="console-actions"></div>
+            </div>
+
+            <aside class="sources-panel cyber-panel neon-blue">
+                <div class="console-topline">
+                    <span>Fuentes de información</span>
+                    <span id="sources-count">0</span>
+                </div>
+
+                <div class="sources-list" id="sources-list">
+                    <p>Las fuentes aparecerán cuando selecciones un tipo de aprendizaje.</p>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <script src="/js/aprender.js"></script>
+</body>
+
+</html>

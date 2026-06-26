@@ -34,7 +34,7 @@ function startApp() {
     mostrarVista("loading");
 
     setTimeout(() => {
-        window.location.href = "./aprender.html";
+        window.location.href = "./aprender/";
     }, 700);
 }
 
