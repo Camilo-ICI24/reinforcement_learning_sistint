@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="eXe-MANIFEST-20260626194938JJ63H4"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:imsmd="http://www.imsglobal.org/xsd/imsmd_v1p2">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+    <adlcp:location>imslrm.xml</adlcp:location>
+  </metadata>
+  <organizations default="eXe-20260626194938JJ63H4">
+    <organization identifier="eXe-20260626194938JJ63H4" structure="hierarchical">
+      <title>Aprendizaje por Refuerzo Semitecnico</title>
+      <item identifier="ITEM-03755024-dfff-4d16-ab08-d3a2825a77fd" identifierref="RES-03755024-dfff-4d16-ab08-d3a2825a77fd" isvisible="true">
+        <title>¿Qué es el Aprendizaje por Refuerzo?</title>
+      </item>
+      <item identifier="ITEM-page-mqvh45tc-9qu8rwnav" identifierref="RES-page-mqvh45tc-9qu8rwnav" isvisible="true">
+        <title>El Agente y el Entorno</title>
+      </item>
+      <item identifier="ITEM-page-mqvhexdm-m5zdzrtdv" identifierref="RES-page-mqvhexdm-m5zdzrtdv" isvisible="true">
+        <title>Estado</title>
+      </item>
+      <item identifier="ITEM-page-mqvi5g0a-x91jiz35i" identifierref="RES-page-mqvi5g0a-x91jiz35i" isvisible="true">
+        <title>Acción</title>
+      </item>
+      <item identifier="ITEM-page-mqvirkfa-7wpqa9hi5" identifierref="RES-page-mqvirkfa-7wpqa9hi5" isvisible="true">
+        <title>Recompensa</title>
+      </item>
+      <item identifier="ITEM-page-mqvjnikj-emxltw8j3" identifierref="RES-page-mqvjnikj-emxltw8j3" isvisible="true">
+        <title>Política</title>
+      </item>
+      <item identifier="ITEM-page-mqvk0t4i-cicb48ajk" identifierref="RES-page-mqvk0t4i-cicb48ajk" isvisible="true">
+        <title>Exploración vs Explotación</title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-03755024-dfff-4d16-ab08-d3a2825a77fd" type="webcontent" adlcp:scormtype="sco" href="index.html">
+      <file href="index.html"/>
+      <dependency identifierref="COMMON_FILES"/>
+    </resource>
+    <resource identifier="RES-page-mqvh45tc-9qu8rwnav" type="webcontent" adlcp:scormtype="sco" href="html/el-agente-y-el-entorno.html">
+      <file href="html/el-agente-y-el-entorno.html"/>
+      <dependency identifierref="COMMON_FILES"/>
+    </resource>
+    <resource identifier="RES-page-mqvhexdm-m5zdzrtdv" type="webcontent" adlcp:scormtype="sco" href="html/estado.html">
+      <file href="html/estado.html"/>
+      <dependency identifierref="COMMON_FILES"/>
+    </resource>
+    <resource identifier="RES-page-mqvi5g0a-x91jiz35i" type="webcontent" adlcp:scormtype="sco" href="html/accion.html">
+      <file href="html/accion.html"/>
+      <dependency identifierref="COMMON_FILES"/>
+    </resource>
+    <resource identifier="RES-page-mqvirkfa-7wpqa9hi5" type="webcontent" adlcp:scormtype="sco" href="html/recompensa.html">
+      <file href="html/recompensa.html"/>
+      <dependency identifierref="COMMON_FILES"/>
+    </resource>
+    <resource identifier="RES-page-mqvjnikj-emxltw8j3" type="webcontent" adlcp:scormtype="sco" href="html/politica.html">
+      <file href="html/politica.html"/>
+      <dependency identifierref="COMMON_FILES"/>
+    </resource>
+    <resource identifier="RES-page-mqvk0t4i-cicb48ajk" type="webcontent" adlcp:scormtype="sco" href="html/exploracion-vs-explotacion.html">
+      <file href="html/exploracion-vs-explotacion.html"/>
+      <dependency identifierref="COMMON_FILES"/>
+    </resource>
+    <resource identifier="COMMON_FILES" type="webcontent" adlcp:scormtype="asset">
+      <file href="content.dtd"/>
+      <file href="content.xml"/>
+      <file href="content/css/base.css"/>
+      <file href="content/img/exe_powered_logo.png"/>
+      <file href="content/resources/reinforcementlearning_1.jpg"/>
+      <file href="content/resources/reinforcementlearning_2.jpg"/>
+      <file href="content/resources/reinforcementlearning_3.jpg"/>
+      <file href="content/resources/reinforcementlearning_4.jpg"/>
+      <file href="content/resources/reinforcementlearning_5.jpg"/>
+      <file href="content/resources/reinforcementlearning_6.jpg"/>
+      <file href="content/resources/reinforcementlearning_7.jpg"/>
+      <file href="idevices/form/exequexthits.svg"/>
+      <file href="idevices/form/exequextrerrors.svg"/>
+      <file href="idevices/form/exequextsq.svg"/>
+      <file href="idevices/form/form.css"/>
+      <file href="idevices/form/form.html"/>
+      <file href="idevices/form/form.js"/>
+      <file href="idevices/form/formnext.png"/>
+      <file href="idevices/form/formnextd.png"/>
+      <file href="idevices/form/formprevious.png"/>
+      <file href="idevices/form/formpreviousd.png"/>
+      <file href="idevices/form/frmhidesuggestion.png"/>
+      <file href="idevices/form/frmshowsuggestion.png"/>
+      <file href="idevices/text/exequextsq.svg"/>
+      <file href="idevices/text/text.css"/>
+      <file href="idevices/text/text.html"/>
+      <file href="idevices/text/text.js"/>
+      <file href="idevices/trueorfalse/exequextfull.svg"/>
+      <file href="idevices/trueorfalse/exequexthits.svg"/>
+      <file href="idevices/trueorfalse/exequextmin.svg"/>
+      <file href="idevices/trueorfalse/exequextnumber.svg"/>
+      <file href="idevices/trueorfalse/exequextreload.svg"/>
+      <file href="idevices/trueorfalse/exequextrerrors.svg"/>
+      <file href="idevices/trueorfalse/exequextscore.svg"/>
+      <file href="idevices/trueorfalse/exequextsq.svg"/>
+      <file href="idevices/trueorfalse/exequexttime.svg"/>
+      <file href="idevices/trueorfalse/tofhidesuggestion.png"/>
+      <file href="idevices/trueorfalse/tofnext.png"/>
+      <file href="idevices/trueorfalse/tofnextd.png"/>
+      <file href="idevices/trueorfalse/tofprevious.png"/>
+      <file href="idevices/trueorfalse/tofpreviousd.png"/>
+      <file href="idevices/trueorfalse/tofshowsuggestion.png"/>
+      <file href="idevices/trueorfalse/trueorfalse.css"/>
+      <file href="idevices/trueorfalse/trueorfalse.html"/>
+      <file href="idevices/trueorfalse/trueorfalse.js"/>
+      <file href="imslrm.xml"/>
+      <file href="libs/SCOFunctions.js"/>
+      <file href="libs/SCORM_API_wrapper.js"/>
+      <file href="libs/bootstrap/bootstrap.bundle.min.js"/>
+      <file href="libs/bootstrap/bootstrap.bundle.min.js.map"/>
+      <file href="libs/bootstrap/bootstrap.min.css"/>
+      <file href="libs/bootstrap/bootstrap.min.css.map"/>
+      <file href="libs/common.js"/>
+      <file href="libs/common_i18n.js"/>
+      <file href="libs/exe_export.js"/>
+      <file href="libs/favicon.ico"/>
+      <file href="libs/jquery/jquery.min.js"/>
+      <file href="theme/config.xml"/>
+      <file href="theme/icons/activity.png"/>
+      <file href="theme/icons/agreement.png"/>
+      <file href="theme/icons/alert.png"/>
+      <file href="theme/icons/arts.png"/>
+      <file href="theme/icons/ask.png"/>
+      <file href="theme/icons/book.png"/>
+      <file href="theme/icons/calculate.png"/>
+      <file href="theme/icons/case.png"/>
+      <file href="theme/icons/chrono.png"/>
+      <file href="theme/icons/collaborative.png"/>
+      <file href="theme/icons/competencies.png"/>
+      <file href="theme/icons/diary.png"/>
+      <file href="theme/icons/diary_alt.png"/>
+      <file href="theme/icons/discuss.png"/>
+      <file href="theme/icons/download.png"/>
+      <file href="theme/icons/draw.png"/>
+      <file href="theme/icons/english.png"/>
+      <file href="theme/icons/experiment.png"/>
+      <file href="theme/icons/explore.png"/>
+      <file href="theme/icons/file.png"/>
+      <file href="theme/icons/gallery.png"/>
+      <file href="theme/icons/geography.png"/>
+      <file href="theme/icons/guide.png"/>
+      <file href="theme/icons/history.png"/>
+      <file href="theme/icons/info.png"/>
+      <file href="theme/icons/interactive.png"/>
+      <file href="theme/icons/letters.png"/>
+      <file href="theme/icons/listen.png"/>
+      <file href="theme/icons/math.png"/>
+      <file href="theme/icons/music.png"/>
+      <file href="theme/icons/nature.png"/>
+      <file href="theme/icons/objectives.png"/>
+      <file href="theme/icons/observe.png"/>
+      <file href="theme/icons/passport.png"/>
+      <file href="theme/icons/perform.png"/>
+      <file href="theme/icons/piece.png"/>
+      <file href="theme/icons/pieces.png"/>
+      <file href="theme/icons/play.png"/>
+      <file href="theme/icons/present.png"/>
+      <file href="theme/icons/reflection.png"/>
+      <file href="theme/icons/roadmap.png"/>
+      <file href="theme/icons/share.png"/>
+      <file href="theme/icons/sport.png"/>
+      <file href="theme/icons/start.png"/>
+      <file href="theme/icons/stop.png"/>
+      <file href="theme/icons/suitcase.png"/>
+      <file href="theme/icons/technology.png"/>
+      <file href="theme/icons/think.png"/>
+      <file href="theme/icons/think_alt.png"/>
+      <file href="theme/icons/video.png"/>
+      <file href="theme/img/icons.png"/>
+      <file href="theme/img/licenses.gif"/>
+      <file href="theme/screenshot.png"/>
+      <file href="theme/style.css"/>
+      <file href="theme/style.js"/>
+    </resource>
+  </resources>
+</manifest>
