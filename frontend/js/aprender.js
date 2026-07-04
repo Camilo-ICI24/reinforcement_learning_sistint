@@ -434,6 +434,7 @@ function escribirTexto(text, onComplete) {
 function mostrarDefinicion() {
     const step = obtenerStep();
     definicionMostrada = true;
+    document.querySelectorAll(".console-img-text-container, .console-img-card, #console-text-2").forEach((el) => el.remove());
     escribirTexto(`Definición: ${step.definition}`, renderizarAcciones);
 }
 
@@ -450,7 +451,7 @@ function cambiarModoAprendizaje(modo, selectedButton) {
 /* Escribe texto con imagen insertada entre dos párrafos (solo step 0 de semi) */
 function escribirTextoConImagen(paso, onComplete) {
     limpiarEscritura();
-    document.querySelectorAll(".console-img-card, #console-text-2").forEach((el) => el.remove());
+    document.querySelectorAll(".console-img-text-container, .console-img-card, #console-text-2").forEach((el) => el.remove());
     consoleText.textContent = "";
     consoleActions.innerHTML = "";
     escribiendo = true;
@@ -469,23 +470,31 @@ function escribirTextoConImagen(paso, onComplete) {
             fase = 2;
             index = 0;
 
+            const flexContainer = document.createElement("div");
+            flexContainer.className = "console-img-text-container";
+
             const imgCard = document.createElement("div");
             imgCard.className = "console-img-card neon-blue";
-            imgCard.style.margin = "0 auto";
+            imgCard.style.flex = "0 0 auto";
+            imgCard.style.maxWidth = "340px";
+            imgCard.style.width = "100%";
             imgCard.style.padding = "14px";
             imgCard.style.borderRadius = "10px";
             imgCard.style.background = "rgba(8, 13, 28, 0.92)";
             imgCard.style.textAlign = "center";
-            imgCard.style.maxWidth = "520px";
+            imgCard.style.boxSizing = "border-box";
             imgCard.innerHTML =
                 '<img src="' + paso.img + '" alt="' + paso.imgAlt +
-                '" style="max-width:100%;max-height:260px;width:auto;height:auto;border-radius:6px;display:inline-block" />';
-
-            consoleText.insertAdjacentElement("afterend", imgCard);
+                '" style="max-width:100%;max-height:240px;width:auto;height:auto;border-radius:6px;display:inline-block" />';
 
             const text2El = document.createElement("div");
             text2El.id = "console-text-2";
-            imgCard.insertAdjacentElement("afterend", text2El);
+            text2El.style.flex = "1";
+            text2El.style.minWidth = "0";
+
+            flexContainer.appendChild(imgCard);
+            flexContainer.appendChild(text2El);
+            consoleText.insertAdjacentElement("afterend", flexContainer);
 
             timeoutEscritura = setTimeout(escribirProximoCaracter, 400);
             return;
@@ -586,33 +595,66 @@ function mostrarResultadoQuiz(acierto, fbCorrecto, fbIncorrecto) {
     }
 }
 
+/* Muestra la pantalla de carga y redirige a la simulación */
+function irASimulacion() {
+    const loadingView = document.getElementById('loading');
+    const fact = document.getElementById('fact');
+
+    if (fact && typeof obtenerCuriosidadRandom === 'function') {
+        fact.textContent = obtenerCuriosidadRandom();
+    }
+
+    document.querySelectorAll(".view").forEach((vista) => {
+        vista.classList.remove("active");
+        vista.classList.add("hidden");
+    });
+
+    if (loadingView) {
+        loadingView.classList.remove("hidden");
+        loadingView.classList.add("active");
+    }
+
+    setTimeout(() => {
+        window.location.href = "/jugando/";
+    }, 700);
+}
+
 /* Muestra la lección completa al instante (sin typewriter) */
 function mostrarLeccionCompletaInstantanea() {
     const paso = obtenerStep();
 
     limpiarEscritura();
-    document.querySelectorAll(".console-img-card, #console-text-2").forEach((el) => el.remove());
+    document.querySelectorAll(".console-img-text-container, .console-img-card, #console-text-2").forEach((el) => el.remove());
 
     consoleText.textContent = paso.textBeforeImg;
     consoleActions.innerHTML = "";
 
+    const flexContainer = document.createElement("div");
+    flexContainer.className = "console-img-text-container";
+
     const imgCard = document.createElement("div");
     imgCard.className = "console-img-card neon-blue";
-    imgCard.style.margin = "0 auto";
+    imgCard.style.flex = "0 0 auto";
+    imgCard.style.maxWidth = "340px";
+    imgCard.style.width = "100%";
     imgCard.style.padding = "14px";
     imgCard.style.borderRadius = "10px";
     imgCard.style.background = "rgba(8, 13, 28, 0.92)";
     imgCard.style.textAlign = "center";
-    imgCard.style.maxWidth = "520px";
+    imgCard.style.boxSizing = "border-box";
     imgCard.innerHTML =
         '<img src="' + paso.img + '" alt="' + paso.imgAlt +
-        '" style="max-width:100%;max-height:260px;width:auto;height:auto;border-radius:6px;display:inline-block" />';
-    consoleText.insertAdjacentElement("afterend", imgCard);
+        '" style="max-width:100%;max-height:240px;width:auto;height:auto;border-radius:6px;display:inline-block" />';
 
     const text2El = document.createElement("div");
     text2El.id = "console-text-2";
     text2El.textContent = paso.textAfterImg;
-    imgCard.insertAdjacentElement("afterend", text2El);
+    text2El.style.flex = "1";
+    text2El.style.minWidth = "0";
+
+    flexContainer.appendChild(imgCard);
+    flexContainer.appendChild(text2El);
+    consoleText.insertAdjacentElement("afterend", flexContainer);
 
     mostrarBotonProbarConocimientos();
 }
@@ -667,14 +709,22 @@ consoleActions.addEventListener("click", (event) => {
     }
 
     if (accion === "simulation") {
-        window.location.href = "./index.html#dashboard";
+        irASimulacion();
     }
 });
+
+function irASimulacion() {
+    if (typeof mostrarLoadingYRedirigir === "function") {
+        mostrarLoadingYRedirigir("/jugando/");
+    } else {
+        window.location.href = "/jugando/";
+    }
+}
 
 optionButtons.forEach((button) => {
     button.addEventListener("click", () => {
         if (button.dataset.action === "simulation") {
-            window.location.href = "./index.html#dashboard";
+            irASimulacion();
             return;
         }
 
