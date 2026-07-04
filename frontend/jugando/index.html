@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Learner - Jugando</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/jugando.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="jugando-background">
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Pantalla de carga -->
+    <div id="loading" class="view hidden">
+        <h2>Cargando...</h2>
+        <div class="spinner"></div>
+        <p id="fact"></p>
+    </div>
+
+    <!-- Urban Learner -->
+    <div id="jugando" class="view active">
+        <main class="jugando-shell">
+            <header class="jugando-header cyber-panel neon-blue">
+                <div>
+                    <p class="eyebrow">Modo simulación</p>
+                    <h1>Urban Learner</h1>
+                    <p>
+                        Conviértete en un agente semáforo y toma decisiones para mejorar el tráfico de una ciudad inteligente.
+                        Aprende de cada acción y obtén la máxima recompensa posible encontrando la mejor estrategia para cada situación.
+                    </p>
+                </div>
+            </header>
+
+            <section class="jugando-content cyber-panel neon-yellow">
+                <div class="jugando-description">
+                    <h2>¿Cómo jugar?</h2>
+                    <ul>
+                        <li><strong>Observa</strong> el estado del tráfico: <span class="estado-ok">OK</span>, <span class="estado-sospechoso">Sospechoso</span> o <span class="estado-peligroso">Peligroso</span></li>
+                        <li><strong>Decide</strong> la acción del agente: <span class="accion-permitir">Permitir</span>, <span class="accion-investigar">Investigar</span> o <span class="accion-bloquear">Bloquear</span></li>
+                        <li><strong>Aprende</strong> de las recompensas: el agente mejora su política con cada decisión</li>
+                        <li><strong>Equilibra</strong> exploración vs explotación para descubrir mejores estrategias</li>
+                    </ul>
+                </div>
+
+                <div class="jugando-actions">
+                    <button id="btn-regresar" class="btn-neon btn-neon-red" aria-label="Regresar a Aprender">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Regresar
+                    </button>
+                    <button id="btn-jugar" class="btn-neon btn-neon-green" aria-label="Comenzar a jugar">
+                        A jugar!
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/datos/curiosidades.js"></script>
+    <script src="/js/particulas.js"></script>
+    <script src="/js/jugando.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+.jugando-background {
+    background: #02040c;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.jugando-background #background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+.jugando-container {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px;
+    text-align: center;
+}
+
+.jugando-header {
+    margin-bottom: 40px;
+}
+
+.jugando-header h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 8px;
+    text-shadow: 0 0 60px rgba(168, 85, 247, 0.4);
+    animation: title-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes title-glow {
+    0% {
+        filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
+    }
+    100% {
+        filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.6));
+    }
+}
+
+.jugando-subtitle {
+    font-size: 1.1rem;
+    color: #a855f7;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.jugando-content {
+    margin-bottom: 48px;
+}
+
+.jugando-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #cbd5e1;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+.estado-ok {
+    color: #22c55e;
+    font-weight: 700;
+}
+
+.estado-sospechoso {
+    color: #eab308;
+    font-weight: 700;
+}
+
+.estado-peligroso {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+.jugando-actions {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.btn-neon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 36px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: 2px solid;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    min-width: 180px;
+}
+
+.btn-neon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(12px);
+    z-index: -1;
+}
+
+.btn-neon:hover::before {
+    opacity: 0.6;
+}
+
+.btn-neon:active {
+    transform: scale(0.97);
+}
+
+.btn-neon-green {
+    color: #22c55e;
+    border-color: #22c55e;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3), inset 0 0 20px rgba(34, 197, 94, 0.1);
+}
+
+.btn-neon-green::before {
+    background: #22c55e;
+}
+
+.btn-neon-green:hover {
+    color: #050816;
+    background: #22c55e;
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.6), inset 0 0 40px rgba(34, 197, 94, 0.3);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.btn-neon-red {
+    color: #ef4444;
+    border-color: #ef4444;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3), inset 0 0 20px rgba(239, 68, 68, 0.1);
+}
+
+.btn-neon-red::before {
+    background: #ef4444;
+}
+
+.btn-neon-red:hover {
+    color: #050816;
+    background: #ef4444;
+    box-shadow: 0 0 40px rgba(239, 68, 68, 0.6), inset 0 0 40px rgba(239, 68, 68, 0.3);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.btn-neon i {
+    font-size: 1.1em;
+    transition: transform 0.3s ease;
+}
+
+.btn-neon:hover i {
+    transform: translateX(4px);
+}
+
+.btn-neon-red:hover i {
+    transform: translateX(-4px);
+}
+
+@media (max-width: 560px) {
+    .jugando-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-neon {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .btn-neon-red:hover i {
+        transform: translateX(4px);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(34, 197, 94, 0.3), inset 0 0 20px rgba(34, 197, 94, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(34, 197, 94, 0.5), inset 0 0 30px rgba(34, 197, 94, 0.2);
+    }
+}
+
+.btn-neon-green {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow-red {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.3), inset 0 0 20px rgba(239, 68, 68, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(239, 68, 68, 0.5), inset 0 0 30px rgba(239, 68, 68, 0.2);
+    }
+}
+
+.btn-neon-red {
+    animation: pulse-glow-red 3s ease-in-out infinite;
+}
