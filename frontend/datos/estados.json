@@ -1,0 +1,522 @@
+[
+  {
+    "id": 1,
+    "titulo": "Hora punta",
+    "descripcion": "La avenida principal presenta una alta congestión debido al horario laboral.",
+    "imagen": "imagenes/estados/estado_01.jpg",
+    "recompensas": {
+      "optimizar": 20,
+      "analizar": 5,
+      "emergencia": -10,
+      "esperar": -15
+    },
+    "explicacion": "Optimizar el flujo ayuda a descongestionar la intersección."
+  },
+  {
+    "id": 2,
+    "titulo": "Ambulancia en camino",
+    "descripcion": "Una ambulancia con las sirenas encendidas necesita cruzar la intersección.",
+    "imagen": "imagenes/estados/estado_02.jpg",
+    "recompensas": {
+      "optimizar": 5,
+      "analizar": 0,
+      "emergencia": 20,
+      "esperar": -20
+    },
+    "explicacion": "Los vehículos de emergencia deben tener prioridad."
+  },
+  {
+    "id": 3,
+    "titulo": "Cruce despejado",
+    "descripcion": "El tránsito es fluido y no existen incidentes en la intersección.",
+    "imagen": "imagenes/estados/estado_03.jpg",
+    "recompensas": {
+      "optimizar": 0,
+      "analizar": 5,
+      "emergencia": -20,
+      "esperar": 20
+    },
+    "explicacion": "No es necesario intervenir cuando el tráfico funciona correctamente."
+  },
+  {
+    "id": 4,
+    "titulo": "Vehículo averiado",
+    "descripcion": "Un automóvil quedó detenido en uno de los carriles y dificulta el tránsito.",
+    "imagen": "imagenes/estados/estado_04.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 20,
+      "emergencia": 5,
+      "esperar": -15
+    },
+    "explicacion": "Analizar primero permite decidir la mejor forma de gestionar el incidente."
+  },
+  {
+    "id": 5,
+    "titulo": "Lluvia intensa",
+    "descripcion": "La lluvia reduce la visibilidad y los vehículos circulan con precaución.",
+    "imagen": "imagenes/estados/estado_05.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 20,
+      "emergencia": -5,
+      "esperar": -10
+    },
+    "explicacion": "Las condiciones climáticas requieren evaluar la situación antes de actuar."
+  },
+  {
+    "id": 6,
+    "titulo": "Accidente menor",
+    "descripcion": "Dos vehículos chocaron levemente y bloquean parcialmente un carril.",
+    "imagen": "imagenes/estados/estado_06.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 10,
+      "emergencia": 20,
+      "esperar": -20
+    },
+    "explicacion": "Activar el protocolo ayuda a restablecer el tránsito de forma segura."
+  },
+  {
+    "id": 7,
+    "titulo": "Salida de un evento",
+    "descripcion": "Finalizó un concierto y cientos de vehículos abandonan el recinto.",
+    "imagen": "imagenes/estados/estado_07.jpg",
+    "recompensas": {
+      "optimizar": 20,
+      "analizar": 10,
+      "emergencia": -15,
+      "esperar": -10
+    },
+    "explicacion": "Modificar el flujo ayuda a absorber el aumento temporal del tráfico."
+  },
+  {
+    "id": 8,
+    "titulo": "Obras en la vía",
+    "descripcion": "Un carril permanece cerrado por trabajos de mantenimiento.",
+    "imagen": "imagenes/estados/estado_08.jpg",
+    "recompensas": {
+      "optimizar": 15,
+      "analizar": 20,
+      "emergencia": -10,
+      "esperar": -15
+    },
+    "explicacion": "Comprender el impacto de las obras permite tomar mejores decisiones."
+  },
+  {
+    "id": 9,
+    "titulo": "Manifestación pacífica",
+    "descripcion": "Un grupo de personas cruza lentamente por un paso habilitado.",
+    "imagen": "imagenes/estados/estado_09.jpg",
+    "recompensas": {
+      "optimizar": 5,
+      "analizar": 20,
+      "emergencia": -20,
+      "esperar": 10
+    },
+    "explicacion": "Antes de intervenir conviene evaluar si el tránsito puede continuar con normalidad."
+  },
+  {
+    "id": 10,
+    "titulo": "Semáforo sincronizado",
+    "descripcion": "Todos los vehículos avanzan de forma ordenada y sin demoras.",
+    "imagen": "imagenes/estados/estado_03.jpg",
+    "recompensas": {
+      "optimizar": 0,
+      "analizar": 5,
+      "emergencia": -20,
+      "esperar": 20
+    },
+    "explicacion": "Cuando todo funciona correctamente, la mejor decisión suele ser no intervenir."
+  },
+  {
+    "id": 11,
+    "titulo": "Vehículo en doble fila",
+    "descripcion": "Un automóvil permanece estacionado en doble fila, reduciendo el espacio para circular.",
+    "imagen": "imagenes/estados/estado_11.jpg",
+    "recompensas": {
+      "optimizar": 15,
+      "analizar": 20,
+      "emergencia": -10,
+      "esperar": -15
+    },
+    "explicacion": "Conviene analizar el impacto antes de modificar el flujo del tránsito."
+  },
+  {
+    "id": 12,
+    "titulo": "Hora de salida escolar",
+    "descripcion": "Decenas de estudiantes comienzan a cruzar la intersección al finalizar la jornada.",
+    "imagen": "imagenes/estados/estado_12.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 15,
+      "emergencia": -15,
+      "esperar": 5
+    },
+    "explicacion": "Es importante observar el comportamiento de peatones antes de modificar el tráfico."
+  },
+  {
+    "id": 13,
+    "titulo": "Fallo en un semáforo",
+    "descripcion": "Uno de los semáforos de la intersección dejó de funcionar correctamente.",
+    "imagen": "imagenes/estados/estado_13.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 15,
+      "emergencia": 20,
+      "esperar": -20
+    },
+    "explicacion": "El fallo puede generar accidentes si no se activa un protocolo adecuado."
+  },
+  {
+    "id": 14,
+    "titulo": "Vehículos circulando con normalidad",
+    "descripcion": "El tránsito mantiene un flujo constante y sin interrupciones.",
+    "imagen": "imagenes/estados/estado_03.jpg",
+    "recompensas": {
+      "optimizar": 5,
+      "analizar": 5,
+      "emergencia": -20,
+      "esperar": 20
+    },
+    "explicacion": "No intervenir evita alterar un sistema que ya funciona correctamente."
+  },
+  {
+    "id": 15,
+    "titulo": "Camión de gran tamaño",
+    "descripcion": "Un camión pesado reduce la velocidad del resto de los vehículos.",
+    "imagen": "imagenes/estados/estado_15.jpg",
+    "recompensas": {
+      "optimizar": 15,
+      "analizar": 20,
+      "emergencia": -10,
+      "esperar": -10
+    },
+    "explicacion": "Analizar la situación permite decidir si realmente es necesario modificar el flujo."
+  },
+  {
+    "id": 16,
+    "titulo": "Vehículo policial en persecución",
+    "descripcion": "Una patrulla persigue a un vehículo y necesita atravesar rápidamente la intersección.",
+    "imagen": "imagenes/estados/estado_16.jpg",
+    "recompensas": {
+      "optimizar": 5,
+      "analizar": 0,
+      "emergencia": 20,
+      "esperar": -20
+    },
+    "explicacion": "Las situaciones de emergencia requieren prioridad inmediata."
+  },
+  {
+    "id": 17,
+    "titulo": "Niebla densa",
+    "descripcion": "La visibilidad disminuyó considerablemente debido a la niebla.",
+    "imagen": "imagenes/estados/estado_17.jpg",
+    "recompensas": {
+      "optimizar": 5,
+      "analizar": 20,
+      "emergencia": -5,
+      "esperar": -10
+    },
+    "explicacion": "La baja visibilidad exige evaluar cuidadosamente el entorno."
+  },
+  {
+    "id": 18,
+    "titulo": "Cruce parcialmente bloqueado",
+    "descripcion": "Un vehículo de carga descarga mercancía cerca de la intersección.",
+    "imagen": "imagenes/estados/estado_18.jpg",
+    "recompensas": {
+      "optimizar": 15,
+      "analizar": 20,
+      "emergencia": -10,
+      "esperar": -15
+    },
+    "explicacion": "Analizar la obstrucción ayuda a elegir la mejor estrategia."
+  },
+  {
+    "id": 19,
+    "titulo": "Desvío temporal",
+    "descripcion": "El tránsito fue redirigido por una calle secundaria debido a trabajos en la vía.",
+    "imagen": "imagenes/estados/estado_08.png",
+    "recompensas": {
+      "optimizar": 15,
+      "analizar": 15,
+      "emergencia": -15,
+      "esperar": -10
+    },
+    "explicacion": "El nuevo flujo debe evaluarse antes de intervenir."
+  },
+  {
+    "id": 20,
+    "titulo": "Festival en la ciudad",
+    "descripcion": "Miles de personas se desplazan por las calles cercanas a la intersección.",
+    "imagen": "imagenes/estados/estado_20.jpg",
+    "recompensas": {
+      "optimizar": 15,
+      "analizar": 20,
+      "emergencia": -20,
+      "esperar": -15
+    },
+    "explicacion": "La presencia masiva de peatones requiere analizar la situación antes de actuar."
+  },
+  {
+    "id": 21,
+    "titulo": "Cruce completamente vacío",
+    "descripcion": "No hay vehículos ni peatones esperando en ninguna dirección.",
+    "imagen": "imagenes/estados/estado_21.jpg",
+    "recompensas": {
+      "optimizar": -5,
+      "analizar": 5,
+      "emergencia": -20,
+      "esperar": 20
+    },
+    "explicacion": "No intervenir evita realizar cambios innecesarios."
+  },
+  {
+    "id": 22,
+    "titulo": "Vehículo detenido en luz verde",
+    "descripcion": "Un automóvil permanece inmóvil a pesar de tener el paso habilitado.",
+    "imagen": "imagenes/estados/estado_22.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 20,
+      "emergencia": -10,
+      "esperar": -15
+    },
+    "explicacion": "Antes de actuar conviene determinar la causa del problema."
+  },
+  {
+    "id": 23,
+    "titulo": "Tormenta eléctrica",
+    "descripcion": "La lluvia y los relámpagos dificultan la circulación de los vehículos.",
+    "imagen": "imagenes/estados/estado_23.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 20,
+      "emergencia": 0,
+      "esperar": -10
+    },
+    "explicacion": "Las condiciones climáticas adversas requieren evaluar la situación cuidadosamente."
+  },
+  {
+    "id": 24,
+    "titulo": "Bomberos en servicio",
+    "descripcion": "Un camión de bomberos se dirige rápidamente hacia una emergencia.",
+    "imagen": "imagenes/estados/estado_24.jpg",
+    "recompensas": {
+      "optimizar": 5,
+      "analizar": 0,
+      "emergencia": 20,
+      "esperar": -20
+    },
+    "explicacion": "Los vehículos de emergencia siempre deben tener prioridad."
+  },
+  {
+    "id": 25,
+    "titulo": "Intersección con tráfico equilibrado",
+    "descripcion": "Ambas avenidas presentan un flujo similar y estable.",
+    "imagen": "imagenes/estados/estado_03.jpg",
+    "recompensas": {
+      "optimizar": 5,
+      "analizar": 10,
+      "emergencia": -20,
+      "esperar": 20
+    },
+    "explicacion": "Cuando el tráfico está equilibrado, intervenir puede ser innecesario."
+  },
+  {
+    "id": 26,
+    "titulo": "Vehículo realizando un giro complicado",
+    "descripcion": "Un camión intenta girar lentamente ocupando parte de la intersección.",
+    "imagen": "imagenes/estados/estado_26.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 20,
+      "emergencia": -15,
+      "esperar": -10
+    },
+    "explicacion": "Analizar la maniobra ayuda a evitar congestión adicional."
+  },
+  {
+    "id": 27,
+    "titulo": "Paso peatonal congestionado",
+    "descripcion": "Muchos peatones esperan para cruzar debido a un evento cercano.",
+    "imagen": "imagenes/estados/estado_27.jpg",
+    "recompensas": {
+      "optimizar": 15,
+      "analizar": 15,
+      "emergencia": -20,
+      "esperar": -10
+    },
+    "explicacion": "Gestionar correctamente el flujo beneficia tanto a peatones como a vehículos."
+  },
+  {
+    "id": 28,
+    "titulo": "Ciclistas cruzando la intersección",
+    "descripcion": "Un grupo numeroso de ciclistas atraviesa el cruce de manera ordenada.",
+    "imagen": "imagenes/estados/estado_28.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 20,
+      "emergencia": -20,
+      "esperar": 5
+    },
+    "explicacion": "Observar el comportamiento de todos los usuarios de la vía evita decisiones apresuradas."
+  },
+  {
+    "id": 29,
+    "titulo": "Congestión en una sola dirección",
+    "descripcion": "Solo una de las avenidas presenta una larga fila de vehículos.",
+    "imagen": "imagenes/estados/estado_29.jpg",
+    "recompensas": {
+      "optimizar": 20,
+      "analizar": 10,
+      "emergencia": -15,
+      "esperar": -15
+    },
+    "explicacion": "Optimizar el flujo ayuda a equilibrar el tránsito entre ambas vías."
+  },
+  {
+    "id": 30,
+    "titulo": "Semáforo recién reparado",
+    "descripcion": "El sistema volvió a funcionar correctamente después de una falla técnica.",
+    "imagen": "imagenes/estados/estado_30.jpg",
+    "recompensas": {
+      "optimizar": 0,
+      "analizar": 10,
+      "emergencia": -20,
+      "esperar": 20
+    },
+    "explicacion": "Lo mejor es observar si el sistema funciona correctamente antes de intervenir."
+  },
+  {
+    "id": 31,
+    "titulo": "Vehículo de carga lenta",
+    "descripcion": "Un camión de gran tamaño avanza lentamente y provoca una pequeña acumulación de vehículos.",
+    "imagen": "imagenes/estados/estado_18.jpg",
+    "recompensas": {
+      "optimizar": 15,
+      "analizar": 20,
+      "emergencia": -15,
+      "esperar": -10
+    },
+    "explicacion": "Analizar primero permite determinar si realmente es necesario modificar el flujo."
+  },
+  {
+    "id": 32,
+    "titulo": "Cruce escolar",
+    "descripcion": "Un grupo de niños comienza a cruzar acompañado por un inspector de tránsito.",
+    "imagen": "imagenes/estados/estado_12.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 20,
+      "emergencia": -20,
+      "esperar": 5
+    },
+    "explicacion": "Es importante evaluar la situación antes de modificar el flujo vehicular."
+  },
+  {
+    "id": 33,
+    "titulo": "Vehículo detenido por falla mecánica",
+    "descripcion": "Un automóvil presenta una avería y permanece detenido en plena intersección.",
+    "imagen": "imagenes/estados/estado_04.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 20,
+      "emergencia": 5,
+      "esperar": -15
+    },
+    "explicacion": "Comprender el problema ayuda a tomar la mejor decisión."
+  },
+  {
+    "id": 34,
+    "titulo": "Tráfico ligero",
+    "descripcion": "Solo circulan algunos vehículos y el tránsito es completamente normal.",
+    "imagen": "imagenes/estados/estado_03.jpg",
+    "recompensas": {
+      "optimizar": 0,
+      "analizar": 5,
+      "emergencia": -20,
+      "esperar": 20
+    },
+    "explicacion": "Cuando no existen problemas, la mejor acción suele ser no intervenir."
+  },
+  {
+    "id": 35,
+    "titulo": "Lluvia con baja visibilidad",
+    "descripcion": "La intensa lluvia obliga a los conductores a reducir considerablemente la velocidad.",
+    "imagen": "imagenes/estados/estado_05.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 20,
+      "emergencia": 0,
+      "esperar": -10
+    },
+    "explicacion": "Evaluar las condiciones antes de actuar mejora la seguridad."
+  },
+  {
+    "id": 36,
+    "titulo": "Ambulancia detenida",
+    "descripcion": "Una ambulancia permanece estacionada a un costado de la vía sin luces ni sirena activadas.",
+    "imagen": "imagenes/estados/estado_36.jpg",
+    "recompensas": {
+      "optimizar": 5,
+      "analizar": 20,
+      "emergencia": -15,
+      "esperar": 10
+    },
+    "explicacion": "No toda ambulancia representa una emergencia; primero debe analizarse el contexto."
+  },
+  {
+    "id": 37,
+    "titulo": "Manifestación autorizada",
+    "descripcion": "Un grupo de personas cruza ordenadamente con apoyo de personal de tránsito.",
+    "imagen": "imagenes/estados/estado_37.jpg",
+    "recompensas": {
+      "optimizar": 5,
+      "analizar": 20,
+      "emergencia": -20,
+      "esperar": 10
+    },
+    "explicacion": "La situación está controlada, por lo que conviene evaluar antes de intervenir."
+  },
+  {
+    "id": 38,
+    "titulo": "Vehículos bloqueando un cruce",
+    "descripcion": "Varios automóviles quedaron detenidos sobre la intersección debido a la congestión.",
+    "imagen": "imagenes/estados/estado_38.jpg",
+    "recompensas": {
+      "optimizar": 20,
+      "analizar": 10,
+      "emergencia": -10,
+      "esperar": -20
+    },
+    "explicacion": "Optimizar el flujo ayuda a liberar rápidamente la intersección."
+  },
+  {
+    "id": 39,
+    "titulo": "Patrulla estacionada",
+    "descripcion": "Un vehículo policial permanece estacionado realizando labores preventivas.",
+    "imagen": "imagenes/estados/estado_39.jpg",
+    "recompensas": {
+      "optimizar": 5,
+      "analizar": 20,
+      "emergencia": -15,
+      "esperar": 10
+    },
+    "explicacion": "La presencia policial no implica necesariamente una emergencia."
+  },
+  {
+    "id": 40,
+    "titulo": "Accidente despejado",
+    "descripcion": "Un accidente ya fue atendido y los vehículos comienzan a circular nuevamente.",
+    "imagen": "imagenes/estados/estado_40.jpg",
+    "recompensas": {
+      "optimizar": 10,
+      "analizar": 20,
+      "emergencia": -15,
+      "esperar": 15
+    },
+    "explicacion": "La situación ya está bajo control; primero conviene confirmar que el flujo se normaliza."
+  }
+]
