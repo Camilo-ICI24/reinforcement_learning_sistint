@@ -38,6 +38,29 @@ function startApp() {
     }, 700);
 }
 
+/* Muestra pantalla de carga y redirige a una URL */
+function mostrarLoadingYRedirigir(destino) {
+    const fact = document.getElementById("fact");
+    const loadingView = document.getElementById("loading");
+
+    if (fact) {
+        fact.textContent = obtenerCuriosidadRandom();
+    }
+
+    if (loadingView) {
+        document.querySelectorAll(".view").forEach((vista) => {
+            vista.classList.remove("active");
+            vista.classList.add("hidden");
+        });
+        loadingView.classList.remove("hidden");
+        loadingView.classList.add("active");
+    }
+
+    setTimeout(() => {
+        window.location.href = destino;
+    }, 700);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     if (window.location.hash === "#dashboard") {
         mostrarVista("dashboard");

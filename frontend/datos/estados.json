@@ -237,7 +237,7 @@
     "id": 19,
     "titulo": "Desvío temporal",
     "descripcion": "El tránsito fue redirigido por una calle secundaria debido a trabajos en la vía.",
-    "imagen": "imagenes/estados/estado_08.png",
+    "imagen": "imagenes/estados/estado_08.jpg",
     "recompensas": {
       "optimizar": 15,
       "analizar": 15,

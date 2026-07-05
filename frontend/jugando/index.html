@@ -13,17 +13,15 @@
 <body class="jugando-background">
     <canvas id="background-canvas"></canvas>
 
-    <!-- Pantalla de carga -->
     <div id="loading" class="view hidden">
         <h2>Cargando...</h2>
         <div class="spinner"></div>
         <p id="fact"></p>
     </div>
 
-    <!-- Urban Learner -->
     <div id="jugando" class="view active">
         <main class="jugando-shell">
-            <header class="jugando-header cyber-panel neon-blue">
+            <header class="jugando-header cyber-panel neon-blue" id="jugando-header">
                 <div>
                     <p class="eyebrow">Modo simulación</p>
                     <h1>Urban Learner</h1>
@@ -34,12 +32,12 @@
                 </div>
             </header>
 
-            <section class="jugando-content cyber-panel neon-yellow">
+            <section class="jugando-content cyber-panel neon-yellow" id="menu-inicio">
                 <div class="jugando-description">
                     <h2>¿Cómo jugar?</h2>
                     <ul>
                         <li><strong>Observa</strong> el estado del tráfico: <span class="estado-ok">OK</span>, <span class="estado-sospechoso">Sospechoso</span> o <span class="estado-peligroso">Peligroso</span></li>
-                        <li><strong>Decide</strong> la acción del agente: <span class="accion-permitir">Permitir</span>, <span class="accion-investigar">Investigar</span> o <span class="accion-bloquear">Bloquear</span></li>
+                        <li><strong>Decide</strong> la acción del agente: <span class="accion-optimizar">Optimizar</span>, <span class="accion-analizar">Analizar</span>, <span class="accion-emergencia">Emergencia</span> o <span class="accion-esperar">Esperar</span></li>
                         <li><strong>Aprende</strong> de las recompensas: el agente mejora su política con cada decisión</li>
                         <li><strong>Equilibra</strong> exploración vs explotación para descubrir mejores estrategias</li>
                     </ul>
@@ -54,6 +52,83 @@
                         A jugar!
                         <i class="fa-solid fa-play"></i>
                     </button>
+                </div>
+            </section>
+
+            <section class="juego-panel hidden" id="juego-panel">
+                <div class="juego-layout">
+                    <div class="juego-main">
+                        <div class="juego-progreso">
+                            <span class="juego-estado-label">Estado <span id="estado-actual">1</span>/15</span>
+                        </div>
+
+                        <div class="juego-contexto cyber-panel">
+                            <h3 id="contexto-titulo"></h3>
+                            <p id="contexto-descripcion"></p>
+                        </div>
+
+                        <div class="juego-imagen-container">
+                            <img id="juego-imagen" src="" alt="Estado del tráfico">
+                        </div>
+
+                        <div class="juego-acciones" id="juego-acciones">
+                            <button class="btn-accion btn-accion-optimizar" data-accion="optimizar">
+                                <i class="fa-solid fa-arrows-spin"></i>
+                                Optimizar
+                            </button>
+                            <button class="btn-accion btn-accion-analizar" data-accion="analizar">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                Analizar
+                            </button>
+                            <button class="btn-accion btn-accion-emergencia" data-accion="emergencia">
+                                <i class="fa-solid fa-truck-fast"></i>
+                                Emergencia
+                            </button>
+                            <button class="btn-accion btn-accion-esperar" data-accion="esperar">
+                                <i class="fa-solid fa-clock"></i>
+                                Esperar
+                            </button>
+                        </div>
+                    </div>
+
+                    <aside class="juego-sidebar">
+                        <div class="juego-puntaje cyber-panel neon-cyan">
+                            <h3><i class="fa-solid fa-trophy"></i> Recompensa</h3>
+                            <div class="puntaje-total" id="puntaje-total">0</div>
+                            <div class="puntaje-detalle">
+                                <div class="puntaje-fila">
+                                    <span class="puntaje-label">Correctas</span>
+                                    <span class="puntaje-valor" id="puntaje-correctas">0</span>
+                                </div>
+                                <div class="puntaje-fila">
+                                    <span class="puntaje-label">Incorrectas</span>
+                                    <span class="puntaje-valor" id="puntaje-incorrectas">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="juego-resultado hidden" id="juego-resultado">
+                    <div class="juego-resultado-inner cyber-panel">
+                        <i class="fa-solid fa-trophy resultado-icono" id="resultado-icono"></i>
+                        <h2 id="resultado-titulo"></h2>
+                        <p id="resultado-mensaje"></p>
+                        <div class="resultado-puntaje-final">
+                            <span class="resultado-puntaje-label">Puntaje final:</span>
+                            <span class="resultado-puntaje-numero" id="resultado-puntaje">0</span>
+                        </div>
+                        <div class="jugando-actions">
+                            <button id="btn-reiniciar" class="btn-neon btn-neon-green">
+                                <i class="fa-solid fa-rotate"></i>
+                                Volver a jugar
+                            </button>
+                            <button id="btn-salir" class="btn-neon btn-neon-red">
+                                <i class="fa-solid fa-arrow-left"></i>
+                                Salir
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
