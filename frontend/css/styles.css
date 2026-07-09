@@ -233,6 +233,11 @@ select {
     box-shadow: 0 0 26px rgba(250, 204, 21, 0.22);
 }
 
+.neon-cyan {
+    border-color: #22d3ee;
+    box-shadow: 0 0 26px rgba(34, 211, 238, 0.22);
+}
+
 .learn-body {
     min-height: 100vh;
     background: #050816;

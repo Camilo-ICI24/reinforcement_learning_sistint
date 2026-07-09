@@ -1076,6 +1076,15 @@ optionButtons.forEach((button) => {
             return;
         }
 
+        if (button.dataset.mode === "practice") {
+            if (typeof mostrarLoadingYRedirigir === "function") {
+                mostrarLoadingYRedirigir("/vista-practica/");
+            } else {
+                window.location.href = "/vista-practica/";
+            }
+            return;
+        }
+
         if (button.dataset.mode === "semi" || button.dataset.mode === "technical") {
             deshabilitarOpciones(button);
         }

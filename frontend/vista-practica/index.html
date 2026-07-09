@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Práctica | Agente de Tráfico Inteligente</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/practica.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="learn-body">
+    <div id="loading" class="view hidden">
+        <h2>Cargando...</h2>
+        <div class="spinner"></div>
+        <p id="fact"></p>
+    </div>
+
+    <main class="practica-shell">
+        <header class="practica-header cyber-panel neon-blue">
+            <div>
+                <p class="eyebrow">Vista Práctica</p>
+                <h1>Agente de Tráfico Inteligente</h1>
+                <p>Agente Q-Learning (20 estados, 4 acciones) entrenándose en vivo para gestionar el tráfico urbano.</p>
+            </div>
+            <a class="back-link" href="/aprender/">
+                <i class="fa-solid fa-arrow-left"></i>
+                Aprender
+            </a>
+        </header>
+
+        <div class="practica-top">
+            <section class="practica-panel cyber-panel neon-green" id="panel-codigo">
+                <h2><i class="fa-solid fa-code"></i> Modelo Q-Learning</h2>
+                <div class="codigo-wrapper">
+                    <pre><code id="codigo-modelo"></code></pre>
+                </div>
+            </section>
+
+            <section class="practica-panel cyber-panel neon-yellow" id="panel-metricas">
+                <h2><i class="fa-solid fa-chart-line"></i> Métricas de aprendizaje</h2>
+                <div class="controles-entrenamiento">
+                    <button id="btn-entrenar" class="btn-neon btn-neon-green">
+                        <i class="fa-solid fa-play"></i>
+                        Entrenar agente
+                    </button>
+                    <button id="btn-detener" class="btn-neon btn-neon-red" disabled>
+                        <i class="fa-solid fa-stop"></i>
+                        Detener
+                    </button>
+                    <div class="control-velocidad">
+                        <label>Velocidad:</label>
+                        <input type="range" id="slider-velocidad" min="1" max="100" value="10">
+                        <span id="velocidad-label">10x</span>
+                    </div>
+                </div>
+                <div class="episodio-info">
+                    <span id="episodio-actual">Episodio: 000 / 500</span>
+                    <span id="mejor-recompensa">Mejor: --</span>
+                    <span id="epsilon-actual">ε = 0.300</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chart-recompensas"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chart-exito"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <section class="practica-panel cyber-panel neon-cyan" id="panel-qtable">
+            <h2><i class="fa-solid fa-table"></i> Q-Table <span class="qtable-dim">(20 estados × 4 acciones)</span></h2>
+            <div class="qtable-wrapper">
+                <table id="qtable-grid">
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>Optimizar</th>
+                            <th>Analizar</th>
+                            <th>Desviar</th>
+                            <th>Emergencia</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qtable-body">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="practica-panel cyber-panel neon-red" id="panel-interactivo">
+            <h2><i class="fa-solid fa-robot"></i> Consultar al agente</h2>
+            <div class="consulta-controls">
+                <select id="select-estado" class="consulta-select"></select>
+                <button id="btn-consultar" class="btn-neon btn-neon-blue">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    Consultar
+                </button>
+            </div>
+            <div id="resultado-consulta" class="consulta-resultado">
+                <p>Entrena al agente primero para ver recomendaciones.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="/datos/curiosidades.js"></script>
+    <script src="/js/particulas.js"></script>
+    <script src="/js/practica.js"></script>
+</body>
+</html>

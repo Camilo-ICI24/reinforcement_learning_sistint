@@ -1,0 +1,372 @@
+.practica-shell {
+    width: min(1300px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 28px 0;
+}
+
+.practica-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 22px 26px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.practica-header h1 {
+    margin: 0 0 6px;
+}
+
+.practica-header p {
+    max-width: 720px;
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.practica-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.practica-panel {
+    padding: 20px;
+    text-align: left;
+}
+
+.practica-panel h2 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    color: #e2e8f0;
+}
+
+.practica-panel h2 i {
+    margin-right: 8px;
+}
+
+.practica-panel h2 .qtable-dim {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 400;
+}
+
+.practica-panel p {
+    color: #94a3b8;
+    margin: 0 0 12px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* Código */
+.codigo-wrapper {
+    max-height: 340px;
+    overflow-y: auto;
+    background: rgba(2, 6, 23, 0.85);
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.codigo-wrapper pre {
+    margin: 0;
+    white-space: pre;
+    font-family: "Fira Code", "Cascadia Code", "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    line-height: 1.55;
+    color: #cbd5e1;
+}
+
+.codigo-wrapper code {
+    display: block;
+}
+
+.codigo-wrapper::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.codigo-wrapper::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+}
+
+.codigo-wrapper::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+}
+
+/* Controles */
+.controles-entrenamiento {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.control-velocidad {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.control-velocidad label {
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+
+.control-velocidad input[type="range"] {
+    width: 100px;
+    accent-color: #38bdf8;
+}
+
+#velocidad-label {
+    color: #38bdf8;
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 32px;
+    text-align: right;
+}
+
+.episodio-info {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 10px;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    font-family: monospace;
+}
+
+.episodio-info span {
+    padding: 4px 10px;
+    background: rgba(5, 8, 22, 0.5);
+    border-radius: 4px;
+}
+
+#episodio-actual {
+    color: #38bdf8;
+}
+
+#mejor-recompensa {
+    color: #22c55e;
+}
+
+#epsilon-actual {
+    color: #facc15;
+}
+
+/* Charts */
+.chart-container {
+    background: rgba(5, 8, 22, 0.5);
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 110px !important;
+    display: block;
+}
+
+/* Q-Table */
+.qtable-wrapper {
+    overflow-x: auto;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#qtable-grid {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+#qtable-grid th,
+#qtable-grid td {
+    padding: 6px 10px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    text-align: center;
+    color: #cbd5e1;
+    white-space: nowrap;
+}
+
+#qtable-grid th {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#qtable-grid td:first-child {
+    background: rgba(56, 189, 248, 0.04);
+    font-weight: 500;
+    color: #94a3b8;
+    text-align: left;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
+
+/* Consulta */
+.consulta-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.consulta-select {
+    background: #0f172a;
+    color: #e2e8f0;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    flex: 1;
+    max-width: 340px;
+    cursor: pointer;
+}
+
+.consulta-select:focus {
+    outline: none;
+    border-color: #38bdf8;
+}
+
+.consulta-resultado {
+    background: rgba(5, 8, 22, 0.5);
+    border-radius: 6px;
+    padding: 16px;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.consulta-resultado p {
+    margin: 0;
+    color: #64748b;
+}
+
+.resultado-accion {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.accion-icono {
+    font-size: 1.5rem;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.accion-texto {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.accion-detalle {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    margin-top: 2px;
+}
+
+.accion-opt {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid #22c55e;
+    color: #22c55e;
+}
+
+.accion-anal {
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+}
+
+.accion-desv {
+    background: rgba(250, 204, 21, 0.12);
+    border: 1px solid #facc15;
+    color: #facc15;
+}
+
+.accion-emer {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+}
+
+/* Botones compartidos */
+.btn-neon {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    border: 1px solid;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(8, 13, 28, 0.9);
+    color: #e2e8f0;
+    transition: 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-neon:hover {
+    transform: scale(1.03);
+}
+
+.btn-neon:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-neon-green {
+    border-color: #22c55e;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.12);
+}
+
+.btn-neon-green:hover:not(:disabled) {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.08);
+}
+
+.btn-neon-blue {
+    border-color: #38bdf8;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.12);
+}
+
+.btn-neon-blue:hover:not(:disabled) {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+    background: rgba(56, 189, 248, 0.08);
+}
+
+.btn-neon-red {
+    border-color: #ef4444;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.12);
+}
+
+.btn-neon-red:hover:not(:disabled) {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.08);
+}
+
+@media (max-width: 860px) {
+    .practica-top {
+        grid-template-columns: 1fr;
+    }
+
+    .codigo-wrapper {
+        max-height: 220px;
+    }
+}
