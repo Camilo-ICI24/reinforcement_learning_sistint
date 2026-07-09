@@ -46,7 +46,9 @@ async function cargarCodigo() {
         if (!r.ok) return;
         const d = await r.json();
         if (d.codigo) {
-            document.getElementById("codigo-modelo").textContent = d.codigo;
+            const el = document.getElementById("codigo-modelo");
+            el.textContent = d.codigo;
+            if (typeof hljs !== "undefined") hljs.highlightElement(el);
         }
     } catch (e) { /* silencioso */ }
 }
@@ -201,7 +203,6 @@ function procesarDatosEntrenamiento(datos) {
     const ep = datos.episodio; /* Episodio actual */
     const reward = datos.recompensa_total; /* Recompensa total por episodio */
     const exito = datos.tasa_exito; /* Tasa de éxito del episodio */
-    const qTable = datos.q_table; /* Q-Table al momento */
     const epsilon = datos.epsilon; /* Valor de exploración vs explotación */
 
     episodiosDatos.push(ep);
@@ -209,7 +210,7 @@ function procesarDatosEntrenamiento(datos) {
     exitoDatos.push(exito);
 
     actualizarInfoEpisodio(ep, reward, epsilon);
-    actualizarQTable(qTable);
+    actualizarQTable(datos.q_table);
     actualizarCharts();
 }
 
@@ -315,6 +316,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (slider && label) {
         slider.addEventListener("input", () => {
             label.textContent = `${slider.value}x`;
+            if (entrenando) {
+                fetch(`${API_BASE}/velocidad?velocidad=${parseFloat(slider.value)}`)
+                    .catch(() => {});
+            }
         });
     }
 

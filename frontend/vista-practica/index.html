@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/practica.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
 </head>
 <body class="learn-body">
     <div id="loading" class="view hidden">
@@ -29,10 +30,26 @@
         </header>
 
         <div class="practica-top">
-            <section class="practica-panel cyber-panel neon-green" id="panel-codigo">
-                <h2><i class="fa-solid fa-code"></i> Modelo Q-Learning</h2>
+            <section class="practica-panel cyber-panel neon-green" id="panel-codigo-qtable">
+                <h2><i class="fa-solid fa-code"></i> Modelo Q-Learning <span class="qtable-dim">· Código + Q-Table</span></h2>
                 <div class="codigo-wrapper">
-                    <pre><code id="codigo-modelo"></code></pre>
+                    <pre><code id="codigo-modelo" class="language-python"></code></pre>
+                </div>
+                <h3 class="qtable-subtitle"><i class="fa-solid fa-table"></i> Q-Table en vivo <span class="qtable-dim">(20 estados × 4 acciones)</span></h3>
+                <div class="qtable-wrapper">
+                    <table id="qtable-grid">
+                        <thead>
+                            <tr>
+                                <th>Estado</th>
+                                <th>Optimizar</th>
+                                <th>Analizar</th>
+                                <th>Desviar</th>
+                                <th>Emergencia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="qtable-body">
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
@@ -41,7 +58,7 @@
                 <div class="controles-entrenamiento">
                     <button id="btn-entrenar" class="btn-neon btn-neon-green">
                         <i class="fa-solid fa-play"></i>
-                        Entrenar agente
+                        Entrenar
                     </button>
                     <button id="btn-detener" class="btn-neon btn-neon-red" disabled>
                         <i class="fa-solid fa-stop"></i>
@@ -59,32 +76,15 @@
                     <span id="epsilon-actual">ε = 0.300</span>
                 </div>
                 <div class="chart-container">
+                    <div class="chart-label"><i class="fa-solid fa-arrow-trend-up"></i> Recompensa por episodio</div>
                     <canvas id="chart-recompensas"></canvas>
                 </div>
                 <div class="chart-container">
+                    <div class="chart-label"><i class="fa-solid fa-bullseye"></i> Tasa de éxito</div>
                     <canvas id="chart-exito"></canvas>
                 </div>
             </section>
         </div>
-
-        <section class="practica-panel cyber-panel neon-cyan" id="panel-qtable">
-            <h2><i class="fa-solid fa-table"></i> Q-Table <span class="qtable-dim">(20 estados × 4 acciones)</span></h2>
-            <div class="qtable-wrapper">
-                <table id="qtable-grid">
-                    <thead>
-                        <tr>
-                            <th>Estado</th>
-                            <th>Optimizar</th>
-                            <th>Analizar</th>
-                            <th>Desviar</th>
-                            <th>Emergencia</th>
-                        </tr>
-                    </thead>
-                    <tbody id="qtable-body">
-                    </tbody>
-                </table>
-            </div>
-        </section>
 
         <section class="practica-panel cyber-panel neon-red" id="panel-interactivo">
             <h2><i class="fa-solid fa-robot"></i> Consultar al agente</h2>
@@ -101,6 +101,8 @@
         </section>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <script src="/datos/curiosidades.js"></script>
     <script src="/js/particulas.js"></script>
     <script src="/js/practica.js"></script>

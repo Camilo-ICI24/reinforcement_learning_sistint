@@ -26,7 +26,7 @@
 
 .practica-top {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.7fr 1.3fr;
     gap: 18px;
     margin-bottom: 18px;
 }
@@ -59,31 +59,47 @@
     line-height: 1.5;
 }
 
-/* Código */
+/* Código + Q-Table fusionados */
+.qtable-subtitle {
+    font-size: 0.85rem;
+    color: #e2e8f0;
+    margin: 10px 0 8px;
+    font-weight: 500;
+}
+
+.qtable-subtitle i {
+    margin-right: 6px;
+    color: #22c55e;
+}
+
 .codigo-wrapper {
-    max-height: 340px;
+    max-height: 155px;
     overflow-y: auto;
     background: rgba(2, 6, 23, 0.85);
     border-radius: 6px;
-    padding: 12px;
+    padding: 8px;
 }
 
 .codigo-wrapper pre {
     margin: 0;
     white-space: pre;
     font-family: "Fira Code", "Cascadia Code", "JetBrains Mono", monospace;
-    font-size: 0.72rem;
-    line-height: 1.55;
-    color: #cbd5e1;
+    font-size: 0.65rem;
+    line-height: 1.45;
 }
 
 .codigo-wrapper code {
     display: block;
 }
 
+.codigo-wrapper .hljs {
+    background: transparent;
+    padding: 0;
+}
+
 .codigo-wrapper::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
 }
 
 .codigo-wrapper::-webkit-scrollbar-track {
@@ -164,6 +180,14 @@
     margin-bottom: 8px;
 }
 
+.chart-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+
 .chart-container canvas {
     width: 100% !important;
     height: 110px !important;
@@ -173,20 +197,19 @@
 /* Q-Table */
 .qtable-wrapper {
     overflow-x: auto;
-    max-height: 400px;
+    max-height: 195px;
     overflow-y: auto;
 }
 
 #qtable-grid {
     width: 100%;
-    min-width: 600px;
     border-collapse: collapse;
-    font-size: 0.8rem;
+    font-size: 0.68rem;
 }
 
 #qtable-grid th,
 #qtable-grid td {
-    padding: 6px 10px;
+    padding: 2px 4px;
     border: 1px solid rgba(56, 189, 248, 0.2);
     text-align: center;
     color: #cbd5e1;
@@ -210,6 +233,9 @@
     position: sticky;
     left: 0;
     z-index: 1;
+    max-width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Consulta */
@@ -351,6 +377,17 @@
     background: rgba(56, 189, 248, 0.08);
 }
 
+.btn-neon-yellow {
+    border-color: #facc15;
+    box-shadow: 0 0 12px rgba(250, 204, 21, 0.12);
+    color: #facc15;
+}
+
+.btn-neon-yellow:hover:not(:disabled) {
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
+    background: rgba(250, 204, 21, 0.08);
+}
+
 .btn-neon-red {
     border-color: #ef4444;
     box-shadow: 0 0 12px rgba(239, 68, 68, 0.12);
@@ -367,6 +404,10 @@
     }
 
     .codigo-wrapper {
-        max-height: 220px;
+        max-height: 140px;
+    }
+
+    .qtable-wrapper {
+        max-height: 160px;
     }
 }
