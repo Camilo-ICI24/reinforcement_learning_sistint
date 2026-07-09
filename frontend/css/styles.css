@@ -319,6 +319,13 @@ select {
     box-shadow: 0 0 22px rgba(56, 189, 248, 0.34);
 }
 
+.learn-option:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    filter: grayscale(0.7);
+    pointer-events: none;
+}
+
 .learn-workspace {
     display: flex;
     flex-direction: column;

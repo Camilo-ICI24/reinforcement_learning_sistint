@@ -351,6 +351,22 @@ function botonActivo(botonSeleccionado) {
     });
 }
 
+/* Deshabilita todos los botones excepto el seleccionado */
+function deshabilitarOpciones(botonSeleccionado) {
+    optionButtons.forEach((boton) => {
+        if (boton !== botonSeleccionado) {
+            boton.disabled = true;
+        }
+    });
+}
+
+/* Habilita todos los botones de opción */
+function habilitarOpciones() {
+    optionButtons.forEach((boton) => {
+        boton.disabled = false;
+    });
+}
+
 /* Actualiza el contenedor del panel de aprendizaje */
 function actualizarConsola() {
     const ruta = obtenerRuta();
@@ -400,7 +416,7 @@ function renderizarAcciones() {
     if (stepActual < ruta.steps.length - 1) {
         consoleActions.appendChild(crearBotonDeAccion("Continuemos", "next", "fa-arrow-right"));
     } else {
-        consoleActions.appendChild(crearBotonDeAccion("Ir a simulación", "simulation", "fa-play"));
+        consoleActions.appendChild(crearBotonDeAccion("Finalizar curso", "complete", "fa-check"));
     }
 }
 
@@ -436,6 +452,19 @@ function mostrarDefinicion() {
     definicionMostrada = true;
     document.querySelectorAll(".console-img-text-container, .console-img-card, #console-text-2").forEach((el) => el.remove());
     escribirTexto(`Definición: ${step.definition}`, renderizarAcciones);
+}
+
+/* Muestra el mensaje de finalización del curso */
+function mostrarMensajeCompletado() {
+    limpiarEscritura();
+    document.querySelectorAll(".console-img-text-container, .console-img-card, #console-text-2").forEach((el) => el.remove());
+
+    consoleText.textContent = "¡Felicidades, ya sabes cómo funciona el aprendizaje por refuerzo! Ahora puedes reforzar tu conocimiento usando el juego de simulación o mediante un caso práctico.";
+    consoleActions.innerHTML = "";
+    consoleMode.textContent = "¡Completado!";
+    consoleProgress.textContent = "✅";
+
+    habilitarOpciones();
 }
 
 /* Alterna el estilo de aprendizaje de semi-técnico a técnico y viceversa */
@@ -699,9 +728,14 @@ consoleActions.addEventListener("click", (event) => {
         renderizarStepActual();
     }
 
-    if (accion === "next" && stepActual < obtenerRuta().steps.length - 1) {
-        stepActual++;
-        renderizarStepActual();
+    if (accion === "next") {
+        if (stepActual < obtenerRuta().steps.length - 1) {
+            stepActual++;
+            renderizarStepActual();
+        } else {
+            mostrarMensajeCompletado();
+            return;
+        }
     }
 
     if (accion === "definition") {
@@ -710,6 +744,10 @@ consoleActions.addEventListener("click", (event) => {
 
     if (accion === "simulation") {
         irASimulacion();
+    }
+
+    if (accion === "complete") {
+        mostrarMensajeCompletado();
     }
 });
 
@@ -726,6 +764,10 @@ optionButtons.forEach((button) => {
         if (button.dataset.action === "simulation") {
             irASimulacion();
             return;
+        }
+
+        if (button.dataset.mode === "semi" || button.dataset.mode === "technical") {
+            deshabilitarOpciones(button);
         }
 
         cambiarModoAprendizaje(button.dataset.mode, button);
