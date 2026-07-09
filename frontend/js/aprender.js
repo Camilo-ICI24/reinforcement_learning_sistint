@@ -192,76 +192,351 @@ const rutasAprendizaje = {
         label: "Aprendizaje Técnico",
         sources: [
             {
-                title: "Human-level control through deep reinforcement learning",
-                detail: "Artículo de Nature donde DeepMind presenta DQN para aprender desde píxeles " +
-                "en Atari.",
-                url: "https://www.nature.com/articles/nature14236"
+                title: "Reinforcement Learning: An Introduction",
+                detail: "Libro de Richard Sutton y Andrew Barto que define el aprendizaje por refuerzo " +
+                "y sus elementos fundamentales, como el estado, la acción, tasa de aprendizaje, entre " +
+                "otros.",
+                url: "http://incompleteideas.net/book/RLbook2020.pdf"
             },
             {
-                title: "Playing Atari with Deep Reinforcement Learning",
-                detail: "Trabajo original en arXiv sobre Deep Q-Networks aplicado a juegos Atari.",
-                url: "https://arxiv.org/abs/1312.5602"
+                title: "Algorithms for Reinforcement Learning",
+                detail: "Libro de Csaba Szpesvári que define y explica algoritmos de aprendizaje " +
+                "por refuerzo, como el Q-Learnin, y su aplicación en procesos de decisión de Markov.",
+                url: "https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf"
             },
             {
-                title: "Continuous control with deep reinforcement learning",
-                detail: "Artículo sobre DDPG, actor-critic y control continuo con RL profundo.",
-                url: "https://arxiv.org/abs/1509.02971"
+                title: "Q-learning",
+                detail: "Artículo principal sobre el algoritmo Q-Learning, que define la función " +
+                "de valor Q(s,a), que asocia una acción con su estado, y modela la recompensa " +
+                "obtenida por el agente luego de tomar dicha decisión.",
+                url: "https://link.springer.com/article/10.1007/BF00992698"
             }
         ],
         steps: [
             {
+                term: "qué es el aprendizaje por refuerzo",
+                text: "El aprendizaje por refuerzo se define como un paradigma del aprendizaje " +
+                "automático en el que un agente aprende a tomar decisiones a través de la interacción " +
+                "constante con un entorno. Mediante un proceso de prueba y error, el agente recibe " +
+                "recompensas o penalizaciones que le permiten ajustar y mejorar su comportamiento " +
+                "con el objetivo de maximizar una recompensa final acumulada.",
+                definition: "El aprendizaje por refuerzo es un paradigma del aprendizaje automático " +
+                "en el que un agente aprende a tomar decisiones mediante la interacción con un " +
+                "entorno, recibiendo recompensas o penalizaciones que guían su comportamiento hacia " +
+                "la maximización de una recompensa acumulada.",
+                img: "tecnico/content/resources/aprendizaje_reforzado_portada.jpg",
+                imgAlt: "Representación del aprendizaje por refuerzo",
+                textBeforeImg: "El aprendizaje por refuerzo se define como un paradigma del " +
+                "aprendizaje automático en el que un agente aprende a tomar decisiones a través de " +
+                "la interacción constante con un entorno.",
+                textAfterImg: "Mediante un proceso de prueba y error, el agente recibe recompensas " +
+                "o penalizaciones que le permiten ajustar y mejorar su comportamiento con el " +
+                "objetivo de maximizar una recompensa final acumulada.",
+                quiz: {
+                    type: "multiple",
+                    question: "(Selección múltiple) ¿Cuál(es) de los siguientes casos corresponde " +
+                    "a un problema de aprendizaje por refuerzo?",
+                    options: [
+                        { label: "a) Clasificar correos electrónicos como spam o no spam " +
+                        "utilizando ejemplos previamente etiquetados", val: false },
+                        { label: "b) Desplazarse por un almacén encontrando rutas más eficientes",
+                            val: true },
+                        { label: "c) Agrupar clientes de acuerdo a sus hábitos de compra sin " +
+                        "conocer categorías previas", val: false },
+                        { label: "d) Estimar el precio de una nueva vivienda a partir de datos " +
+                        "históricos", val: false }
+                    ],
+                    feedbackCorrecto: "¡Excelente! En este caso, el modelo de aprendizaje por " +
+                    "refuerzo obtendrá mejores recompensas si la ruta encontrada es más óptima",
+                    feedbackIncorrecto: "No, la clasificación y estimación no corresponden a " +
+                    "ejemplos para este tipo de aprendizaje"
+                }
+            },
+            {
                 term: "agente",
-                text: "El agente selecciona acciones siguiendo una política definida. En el " +
-                "Q-learning, dicha política se induce a partir de una Q-table que estima el valor " +
-                "esperado de cada par estado-acción.",
-                definition: "En el aprendizaje por refuerzo, el agente es el componente que interactúa " +
-                "con el entorno mediante la observación de estados, la selección de acciones y la " +
-                "actualización de su política a partir de recompensas obtenidas."
+                text: "El agente corresponde a la entidad responsable de tomar decisiones dentro " +
+                "de un entorno. Su propósito es seleccionar las acciones que le permitan maximizar " +
+                "la recompensa acumulada a lo largo del tiempo. El agente no dispone de un conjunto " +
+                "de respuestas correctas, sino que aprende interactuando, observando los resultados " +
+                "de sus acciones y ajustando su comportamiento.",
+                definition: "El agente es la entidad responsable de tomar decisiones dentro de un " +
+                "entorno. Su propósito es seleccionar acciones que maximicen la recompensa " +
+                "acumulada, aprendiendo mediante la interacción y la retroalimentación del entorno.",
+                img: "tecnico/content/resources/chatbot-720x420.jpg",
+                imgAlt: "Representación del agente en el aprendizaje por refuerzo",
+                textBeforeImg: "El agente corresponde a la entidad responsable de tomar decisiones " +
+                "dentro de un entorno. Su propósito es seleccionar las acciones que le permitan " +
+                "maximizar la recompensa acumulada a lo largo del tiempo.",
+                textAfterImg: "El agente no dispone de un conjunto de respuestas correctas, sino " +
+                "que aprende interactuando, observando los resultados de sus acciones y ajustando " +
+                "su comportamiento en función de las recompensas o penalizaciones recibidas."
             },
             {
                 term: "entorno",
-                text: "El entorno recibe la acción tomada por el agente, transita a un nuevo estado y " +
-                "devuelve una recompensa. Es el componente que define la dinámica del problema de " +
-                "aprendizaje, definiendo la manera en la que evolucionan los estados y la " +
-                "retroalimentación que el agente recibe tras cada acción realizada.",
-                definition: "El entorno es el sistema que define la dinámica del proceso de decisión " +
-                "en el aprendizaje por refuerzo, especificado mediante un conjunto de estados, una " +
-                "función de transición y una de recompensa. En cada interacción, el entorno recibe " +
-                "una decisión tomada por el agente y retorna una nueva observación del estado y " +
-                "una recompensa."
+                text: "En el aprendizaje por refuerzo, el entorno es el contexto o sistema con el " +
+                "que el agente inteligente interactúa. Representa todo aquello que rodea al agente " +
+                "y responde a las acciones que este realiza. Cuando se ejecuta una acción, el " +
+                "entorno cambia de estado y entrega una recompensa que indica qué tan favorable " +
+                "fue la decisión tomada.",
+                definition: "El entorno es el contexto o sistema con el que el agente interactúa. " +
+                "Responde a las acciones del agente cambiando de estado y entregando recompensas " +
+                "que indican qué tan favorable fue cada decisión.",
+                img: "tecnico/content/resources/entorno_ia.jpeg",
+                imgAlt: "Diagrama del entorno en el aprendizaje por refuerzo",
+                textBeforeImg: "En el aprendizaje por refuerzo, el entorno es el contexto o " +
+                "sistema con el que el agente inteligente interactúa. Representa todo aquello que " +
+                "rodea al agente y responde a las acciones que este realiza.",
+                textAfterImg: "Cuando se ejecuta una acción en particular, el entorno cambia de " +
+                "estado y entrega una recompensa, positiva o negativa, indicando qué tan favorable " +
+                "fue la decisión tomada. Esta interacción permite que el agente pueda aprender una " +
+                "estrategia progresivamente para alcanzar su objetivo.",
+                quiz: {
+                    type: "truefalse",
+                    question: "(Verdadero o Falso) El entorno permanece constante tras una acción " +
+                    "efectuada por el agente",
+                    options: [
+                        { label: "Verdadero", val: false },
+                        { label: "Falso", val: true }
+                    ],
+                    feedbackCorrecto: "¡Correcto! El entorno cambia constantemente como respuesta " +
+                    "a las acciones del agente, generando nuevos estados y recompensas.",
+                    feedbackIncorrecto: "Incorrecto. El entorno no permanece constante, ya que " +
+                    "cada acción del agente modifica el estado del entorno."
+                }
             },
             {
                 term: "estado",
-                text: "Los estados son valores discretos: 0 puede representar 'OK', 1 'Sospechoso' y " +
-                "2 'Peligroso'. Esta discretización permite construir una tabla de valores Q por " +
-                "cada combinación estado-acción obtenida.",
-                definition: "Un estado es una representación formal del entorno en un momento " +
-                "determinado, utilizada por el agente para tomar decisiones."
+                text: "Un estado representa la situación actual del entorno en un momento " +
+                "determinado. Contiene la información necesaria para que el agente inteligente " +
+                "pueda comprender el contexto en el que se encuentra y seleccionar la acción más " +
+                "adecuada. Cada vez que el agente ejecuta una acción, el entorno puede cambiar, " +
+                "generando un nuevo estado.",
+                definition: "Un estado representa la situación actual del entorno en un momento " +
+                "determinado. Contiene la información necesaria para que el agente comprenda el " +
+                "contexto y seleccione la acción más adecuada.",
+                img: "tecnico/content/resources/estados_ia.png",
+                imgAlt: "Representación del estado en el aprendizaje por refuerzo",
+                textBeforeImg: "Un estado representa la situación actual del entorno en un momento " +
+                "determinado. Contiene la información necesaria para que el agente inteligente " +
+                "pueda comprender el contexto en el que se encuentra y seleccionar la acción más " +
+                "adecuada.",
+                textAfterImg: "Cada vez que el agente ejecuta una acción, el entorno puede " +
+                "cambiar, generando un nuevo estado que servirá como punto de partida para la " +
+                "siguiente decisión."
             },
             {
                 term: "acción",
-                text: "Las acciones también corresponden a valores discretas: 0 puede representar "+
-                "'Permitir', 1 'Investigar' y 2 'Bloquear'. La tabla de valores Q almacena " +
-                "estimaciones del retorno esperado para cada par estado-acción guardados.",
-                definition: "Una acción es una decisión seleccionada por el agente que afecta " +
-                "la transición del entorno y la recompensa obtenida."
+                text: "La acción corresponde a una decisión que el agente inteligente toma al " +
+                "encontrarse en un estado determinado del entorno. Cada acción ejecutada produce " +
+                "una respuesta del entorno, la cual puede modificar la situación actual, generar " +
+                "un nuevo estado y otorgar una recompensa o penalización.",
+                definition: "Una acción es una decisión que el agente toma al encontrarse en un " +
+                "estado determinado. Cada acción produce una respuesta del entorno, modificando " +
+                "la situación y generando una recompensa.",
+                img: "tecnico/content/resources/acciones_ia.png",
+                imgAlt: "Representación de las acciones del agente",
+                textBeforeImg: "La acción corresponde a una decisión que el agente inteligente " +
+                "toma al encontrarse en un estado determinado del entorno. Cada acción ejecutada " +
+                "produce una respuesta del entorno, la cual puede modificar la situación actual, " +
+                "generar un nuevo estado y otorgar una recompensa o penalización en función del " +
+                "resultado obtenido.",
+                textAfterImg: "Resumidamente, las acciones son un conjunto de alternativas " +
+                "disponibles para que el agente interactúe con el entorno y avance hacia el " +
+                "cumplimiento de su objetivo, y varían dependiendo del problema que se quiera " +
+                "resolver."
             },
             {
                 term: "recompensa",
-                text: "La recompensa guía la actualización de la Q-table. El agente actualiza sus " +
-                "estimaciones combinando recompensa inmediata y valor futuro descontado mediante " +
-                "parámetros como α (tasa de aprendizaje) y γ (factor de descuento).",
-                definition: "La recompensa es una señal escalar que cuantifica la utilidad de un " +
-                "cambio, utilizado para mejorar la toma de decisiones del agente."
+                text: "La recompensa es una señal de retroalimentación que el entorno proporciona " +
+                "al agente luego de ejecutar una acción. Esta señal indica qué tan favorable o " +
+                "desfavorable fue la decisión tomada con respecto al objetivo del problema. Las " +
+                "recompensas permiten que el agente evalúe las consecuencias de sus acciones.",
+                definition: "La recompensa es una señal de retroalimentación que el entorno " +
+                "proporciona al agente luego de ejecutar una acción, indicando qué tan favorable " +
+                "o desfavorable fue la decisión con respecto al objetivo del problema.",
+                img: "tecnico/content/resources/reward.jpg",
+                imgAlt: "Representación de la recompensa en el aprendizaje por refuerzo",
+                textBeforeImg: "La recompensa es una señal de retroalimentación que el entorno " +
+                "proporciona al agente luego de ejecutar una acción. Esta señal indica qué tan " +
+                "favorable o desfavorable fue la decisión tomada con respecto al objetivo del " +
+                "problema a resolver.",
+                textAfterImg: "Las recompensas permiten que el agente evalúe las consecuencias " +
+                "de sus acciones y aprenda cuáles producen mejores resultados. Generalmente, una " +
+                "recompensa positiva incentiva la repetición de un comportamiento, mientras que " +
+                "una recompensa negativa o penalización desincentiva aquellas acciones que alejan " +
+                "al agente de su objetivo.",
+                quiz: {
+                    type: "multiple",
+                    question: "(Selección múltiple) ¿Cuál es la función principal de la " +
+                    "recompensa en el aprendizaje por refuerzo?",
+                    options: [
+                        { label: "a) Determinar la estructura de la red neuronal", val: false },
+                        { label: "b) Reemplazar la política de decisión", val: false },
+                        { label: "c) Indicar al agente qué tan favorable fue el resultado " +
+                        "de una acción", val: true },
+                        { label: "d) Eliminar la necesidad de explorar el entorno", val: false }
+                    ],
+                    feedbackCorrecto: "¡Muy bien! La recompensa indica al agente la eficiencia " +
+                    "de la acción realizada, permitiéndole aprender cuáles decisiones producen " +
+                    "mejores resultados",
+                    feedbackIncorrecto: "No. Revisa el concepto de recompensa en el aprendizaje " +
+                    "por refuerzo e inténtalo nuevamente."
+                }
             },
             {
-                term: "exploración",
-                text: "El parámetro ε controla el balance entre la exploración y explotación. Con " +
-                "probabilidad ε el agente explora acciones aleatorias; en caso contrario, selecciona " +
-                "la acción con mayor valor Q.",
-                definition: "La exploración consiste en probar acciones no óptimas conocidas para " +
-                "mejorar la estimación de la política, mientras que la explotación consiste en " +
-                "seleccionar la mejor acción según el conocimiento actual."
+                term: "cómo aprende un agente",
+                text: "El aprendizaje por refuerzo se basa en la interacción continua entre el " +
+                "agente y el entorno. En cada interacción, el agente observa el estado actual, " +
+                "selecciona una acción y recibe una recompensa como retroalimentación. A partir " +
+                "de esta experiencia, ajusta progresivamente su comportamiento para mejorar sus " +
+                "decisiones futuras. Para ello, emplea algoritmos como Q-Learning, que le " +
+                "permiten estimar qué acciones son más convenientes en cada estado.",
+                definition: "El aprendizaje por refuerzo se basa en la interacción continua " +
+                "entre agente y entorno. El agente observa, actúa y recibe retroalimentación, " +
+                "ajustando su comportamiento mediante algoritmos como Q-Learning para mejorar " +
+                "sus decisiones futuras.",
+                img: "tecnico/content/resources/grafica_rl.png",
+                imgAlt: "Diagrama del proceso de aprendizaje por refuerzo",
+                textBeforeImg: "El aprendizaje por refuerzo se basa en la interacción continua " +
+                "entre el agente y el entorno. En cada interacción, el agente observa el estado " +
+                "actual, selecciona una acción y recibe una recompensa como retroalimentación.",
+                textAfterImg: "A partir de esta experiencia, ajusta progresivamente su " +
+                "comportamiento para mejorar sus decisiones futuras. Para ello, emplea algoritmos " +
+                "como Q-Learning, que le permiten estimar qué acciones son más convenientes en " +
+                "cada estado. Durante este proceso, el agente debe equilibrar la exploración de " +
+                "nuevas alternativas con la explotación de aquellas que han demostrado obtener " +
+                "mejores resultados."
+            },
+            {
+                term: "exploración vs explotación",
+                text: "Durante el proceso de aprendizaje, el agente debe decidir constantemente " +
+                "entre explorar nuevas acciones o explotar el conocimiento que ha adquirido " +
+                "previamente. La exploración consiste en probar acciones que el agente aún no " +
+                "conoce completamente, con el objetivo de obtener nueva información. Por otro " +
+                "lado, la explotación consiste en seleccionar la acción que ofrece la mayor " +
+                "recompensa esperada según la experiencia acumulada.",
+                definition: "La exploración consiste en probar acciones nuevas para obtener " +
+                "información sobre el entorno, mientras que la explotación consiste en " +
+                "seleccionar la acción con mayor recompensa esperada según el conocimiento " +
+                "adquirido. El equilibrio entre ambas se conoce como el dilema " +
+                "exploración-explotación.",
+                img: "tecnico/content/resources/decisions.jpg",
+                imgAlt: "Representación del dilema exploración vs explotación",
+                textBeforeImg: "Durante el proceso de aprendizaje, el agente debe decidir " +
+                "constantemente entre explorar nuevas acciones o explotar el conocimiento que " +
+                "ha adquirido previamente. Este equilibrio se conoce como el dilema " +
+                "exploración-explotación y constituye uno de los principales desafíos del " +
+                "aprendizaje por refuerzo.",
+                textAfterImg: "La exploración consiste en probar acciones que el agente aún no " +
+                "conoce completamente, con el objetivo de obtener nueva información sobre el " +
+                "entorno y descubrir estrategias potencialmente más beneficiosas. Por otro lado, " +
+                "la explotación consiste en seleccionar la acción que, según la experiencia " +
+                "acumulada, ofrece la mayor recompensa esperada.",
+                quiz: {
+                    type: "multiple",
+                    question: "Un agente decide probar una acción que nunca ha realizado antes, " +
+                    "aunque existe otra acción que normalmente le entrega una recompensa alta. " +
+                    "¿Qué estrategia está aplicando el agente?",
+                    options: [
+                        { label: "Explotación", val: false },
+                        { label: "Exploración", val: true }
+                    ],
+                    feedbackCorrecto: "¡Maravilloso! El agente está probando una acción nueva " +
+                    "para obtener información adicional sobre el entorno, en lugar de elegir " +
+                    "únicamente la opción conocida con mejor recompensa",
+                    feedbackIncorrecto: "No. Recuerda que explorar implica probar nuevas acciones " +
+                    "para aprender más sobre el entorno, mientras que explotar implica elegir " +
+                    "acciones conocidas que ya entregan buenos resultados"
+                }
+            },
+            {
+                term: "q-learning",
+                text: "Q-Learning es un algoritmo de aprendizaje por refuerzo que permite a un " +
+                "agente aprender qué acciones son más convenientes en cada estado del entorno. " +
+                "Para ello, utiliza una función de valor Q(s,a), que estima la recompensa " +
+                "acumulada esperada al ejecutar una acción determinada, permitiendo que el " +
+                "agente seleccione aquellas acciones con mayor valor aprendido.",
+                definition: "Q-Learning es un algoritmo de aprendizaje por refuerzo que utiliza " +
+                "una función de valor Q(s,a) para estimar la recompensa acumulada esperada al " +
+                "ejecutar una acción en un estado, permitiendo al agente seleccionar las " +
+                "acciones más convenientes.",
+                img: "tecnico/content/resources/formula_qlearning.jpg",
+                imgAlt: "Fórmula del algoritmo Q-Learning",
+                textBeforeImg: "Q-Learning es un algoritmo de aprendizaje por refuerzo que " +
+                "permite a un agente aprender qué acciones son más convenientes en cada estado " +
+                "del entorno. Para ello, utiliza una función de valor Q(s,a), que estima la " +
+                "recompensa acumulada esperada al ejecutar una acción determinada, permitiendo " +
+                "que el agente seleccione aquellas acciones con mayor valor aprendido.",
+                textAfterImg: "El valor Q se actualiza mediante la experiencia obtenida durante " +
+                "la interacción con el entorno. Donde α representa la tasa de aprendizaje, r la " +
+                "recompensa obtenida después de ejecutar la acción, γ el factor de descuento de " +
+                "recompensas futuras y max Q(s',a') el mayor valor estimado para las acciones " +
+                "disponibles en el siguiente estado."
+            },
+            {
+                term: "q-table",
+                text: "El Q-Learning utiliza una estructura denominada Q-Table para almacenar " +
+                "los valores asociados a cada combinación de estado y acción. Cada celda " +
+                "representa el valor Q(s,a), que indica qué tan conveniente es ejecutar una " +
+                "determinada acción cuando el agente se encuentra en un estado específico. " +
+                "Durante el aprendizaje, el agente actualiza estos valores mediante la " +
+                "experiencia obtenida del entorno.",
+                definition: "La Q-Table es una estructura que almacena los valores Q(s,a) para " +
+                "cada combinación de estado y acción. Durante el aprendizaje, el agente " +
+                "actualiza estos valores mediante la experiencia, permitiendo identificar qué " +
+                "acciones ofrecen mejores recompensas esperadas.",
+                img: "tecnico/content/resources/qtable.jpg",
+                imgAlt: "Representación de una Q-Table",
+                textBeforeImg: "El Q-Learning utiliza una estructura denominada Q-Table para " +
+                "almacenar los valores asociados a cada combinación de estado y acción. Cada " +
+                "celda representa el valor Q(s,a), que indica qué tan conveniente es ejecutar " +
+                "una determinada acción cuando el agente se encuentra en un estado específico.",
+                textAfterImg: "Durante el aprendizaje, el agente actualiza estos valores " +
+                "mediante la experiencia obtenida del entorno. Con el tiempo, la tabla Q permite " +
+                "identificar qué acciones ofrecen mejores recompensas esperadas, ayudando al " +
+                "agente a construir una estrategia de decisión eficiente.",
+                quiz: [
+                    {
+                        type: "multiple",
+                        question: "(Selección múltiple) ¿Cuál es el propósito principal de una " +
+                        "Q-Table en el aprendizaje por refuerzo?",
+                        options: [
+                            { label: "a) Almacenar los valores estimados de recompensa para pares " +
+                            "estado-acción", val: true },
+                            { label: "b) Registrar las acciones que el agente no ha realizado",
+                                val: false },
+                            { label: "c) Eliminar la necesidad de interacción entre el agente y " +
+                            "el entorno", val: false },
+                            { label: "d) Controlar directamente la velocidad de aprendizaje del " +
+                            "agente", val: false }
+                        ],
+                        feedbackCorrecto: "¡Muy bien! La tabla Q almacena los valores estimados de " +
+                        "recompensa para cada par estado-acción para que el agente pueda seleccionar " +
+                        "aquellas que le otorguen mejores recompensas",
+                        feedbackIncorrecto: "No. Recuerda que la función principal de la tabla es " +
+                        "guardar la información aprendida sobre los valores de las acciones en " +
+                        "distintos estados para apoyar la toma de decisiones del agente"
+                    },
+                    {
+                        type: "multiple",
+                        question: "(Selección múltiple) En la fórmula del Q-Learning, ¿qué " +
+                        "representa el valor Q(s,a)?",
+                        options: [
+                            { label: "a) La recompensa inmediata obtenida por una acción sin " +
+                            "considerar el futuro", val: false },
+                            { label: "b) El número de veces que una acción ha sido seleccionada " +
+                            "por el agente", val: false },
+                            { label: "c) La cantidad de estados existentes dentro del entorno",
+                                val: false },
+                            { label: "d) La recompensa acumulada esperada al realizar una acción " +
+                            "determinada en un estado específico", val: true }
+                        ],
+                        feedbackCorrecto: "¡Asombroso! El valor Q(s,a) representa la recompensa " +
+                        "acumulada esperada al ejecutar una acción en un estado determinado",
+                        feedbackIncorrecto: "No. Debes recordar que el valor estima el beneficio " +
+                        "esperado de realizar una acción en un estado en particular"
+                    }
+                ]
             }
         ]
     },
@@ -323,6 +598,7 @@ let stepActual = 0; /* Tópico que se muestra en el contenedor */
 let timeoutEscritura = null; /* Imprime texto caracter por caracter */
 let escribiendo = false; /* Indica si se está escribiendo la lección */
 let definicionMostrada = false; /* Se muestra la definición del término o no */
+let quizActualIndex = 0; /* Índice del quiz actual cuando hay múltiples quizzes en un paso */
 
 /* Obtiene la ruta de aprendizaje (semi-técnico o técnico) */
 function obtenerRuta() {
@@ -448,6 +724,7 @@ function escribirTexto(text, onComplete) {
 
 /* Muestra la definición de los conceptos presentados en la lección */
 function mostrarDefinicion() {
+    quizActualIndex = 0;
     const step = obtenerStep();
     definicionMostrada = true;
     document.querySelectorAll(".console-img-text-container, .console-img-card, #console-text-2").forEach((el) => el.remove());
@@ -456,6 +733,7 @@ function mostrarDefinicion() {
 
 /* Muestra el mensaje de finalización del curso */
 function mostrarMensajeCompletado() {
+    quizActualIndex = 0;
     limpiarEscritura();
     document.querySelectorAll(".console-img-text-container, .console-img-card, #console-text-2").forEach((el) => el.remove());
 
@@ -566,13 +844,13 @@ function mostrarCuestionarioAgente() {
     document.querySelectorAll(".console-img-card, #console-text-2").forEach((el) => el.remove());
 
     const paso = obtenerStep();
-    const quiz = paso.quiz;
-    if (!quiz) return;
+    const quizData = Array.isArray(paso.quiz) ? paso.quiz[quizActualIndex] : paso.quiz;
+    if (!quizData) return;
 
-    consoleText.textContent = quiz.question;
+    consoleText.textContent = quizData.question;
     consoleActions.innerHTML = "";
 
-    quiz.options.forEach((op) => {
+    quizData.options.forEach((op) => {
         const btn = document.createElement("button");
         btn.textContent = op.label;
         btn.className = "console-action";
@@ -583,7 +861,7 @@ function mostrarCuestionarioAgente() {
         btn.style.marginBottom = "8px";
         btn.style.textAlign = "left";
         btn.onclick = function () {
-            mostrarResultadoQuiz(op.val, quiz.feedbackCorrecto, quiz.feedbackIncorrecto);
+            mostrarResultadoQuiz(op.val, quizData.feedbackCorrecto, quizData.feedbackIncorrecto);
         };
         consoleActions.appendChild(btn);
     });
@@ -602,15 +880,30 @@ function mostrarResultadoQuiz(acierto, fbCorrecto, fbIncorrecto) {
     consoleActions.appendChild(feedback);
 
     if (acierto) {
-        const btn = document.createElement("button");
-        btn.textContent = "Siguiente";
-        btn.className = "console-action";
-        btn.type = "button";
-        btn.dataset.action = "next";
-        btn.style.fontWeight = "bold";
-        btn.style.background = "#22c55e";
-        btn.style.color = "#050816";
-        consoleActions.appendChild(btn);
+        const paso = obtenerStep();
+        const hayMasQuizzes = Array.isArray(paso.quiz) && quizActualIndex < paso.quiz.length - 1;
+
+        if (hayMasQuizzes) {
+            const btn = document.createElement("button");
+            btn.textContent = "Siguiente pregunta";
+            btn.className = "console-action";
+            btn.type = "button";
+            btn.dataset.action = "next-quiz";
+            btn.style.fontWeight = "bold";
+            btn.style.background = "#22c55e";
+            btn.style.color = "#050816";
+            consoleActions.appendChild(btn);
+        } else {
+            const btn = document.createElement("button");
+            btn.textContent = "Siguiente";
+            btn.className = "console-action";
+            btn.type = "button";
+            btn.dataset.action = "next";
+            btn.style.fontWeight = "bold";
+            btn.style.background = "#22c55e";
+            btn.style.color = "#050816";
+            consoleActions.appendChild(btn);
+        }
     } else {
         const btn = document.createElement("button");
         btn.textContent = "Ver lección otra vez";
@@ -650,6 +943,7 @@ function irASimulacion() {
 
 /* Muestra la lección completa al instante (sin typewriter) */
 function mostrarLeccionCompletaInstantanea() {
+    quizActualIndex = 0;
     const paso = obtenerStep();
 
     limpiarEscritura();
@@ -690,6 +984,7 @@ function mostrarLeccionCompletaInstantanea() {
 
 /* Renderiza el step actual con soporte para imagen en cualquier step */
 function renderizarStepActual() {
+    quizActualIndex = 0;
     definicionMostrada = false;
     actualizarConsola();
 
@@ -714,6 +1009,13 @@ consoleActions.addEventListener("click", (event) => {
     const accion = botonDeAccion.dataset.action;
 
     if (accion === "quiz-agente") {
+        quizActualIndex = 0;
+        mostrarCuestionarioAgente();
+        return;
+    }
+
+    if (accion === "next-quiz") {
+        quizActualIndex++;
         mostrarCuestionarioAgente();
         return;
     }
