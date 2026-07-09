@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import threading
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware as cmw
 from fastapi.responses import StreamingResponse
@@ -15,6 +16,7 @@ app.add_middleware(cmw, allow_origins=CORS_ORIGINS, allow_credentials=True,
 
 agente_entrenado = None
 metricas_entrenamiento = None
+velocidad_actual = 1.0
 
 
 @app.get("/")
@@ -77,6 +79,13 @@ def labels():
     return {"estados": ESTADOS, "acciones": ACCIONES}
 
 
+@app.get("/velocidad")
+def actualizar_velocidad(velocidad: float):
+    global velocidad_actual
+    velocidad_actual = max(0.1, velocidad)
+    return {"velocidad": velocidad_actual}
+
+
 @app.get("/codigo")
 def codigo():
     ruta = os.path.join(os.path.dirname(__file__), "qlearning.py")
@@ -99,11 +108,11 @@ def _entrenar_con_queue(q, loop):
 
 @app.get("/entrenar-stream")
 async def entrenar_stream(velocidad: float = 1.0):
-    delay = max(0.001, 1.0 / max(velocidad, 0.1))
+    global velocidad_actual
+    velocidad_actual = max(0.1, velocidad)
     q = asyncio.Queue()
     loop = asyncio.get_event_loop()
 
-    import threading
     hilo = threading.Thread(target=_entrenar_con_queue, args=(q, loop), daemon=True)
     hilo.start()
 
@@ -114,6 +123,7 @@ async def entrenar_stream(velocidad: float = 1.0):
                 yield f"data: {json.dumps({'completado': True, 'estados': ESTADOS, 'acciones': ACCIONES})}\n\n"
                 return
             yield f"data: {json.dumps(datos)}\n\n"
+            delay = max(0.001, 1.0 / max(velocidad_actual, 0.1))
             await asyncio.sleep(delay)
 
     return StreamingResponse(
