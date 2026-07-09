@@ -1,33 +1,29 @@
 class Metrics:
     def __init__(self):
-        self.episodios = [] # Lista de episodios para guardar el avance del aprendizaje
+        self.episodios = []
+        self.recompensas_totales = []
+        self.epsilons = []
+        self.tasa_exito = []
+        self.q_tables = []
 
-        self.recompensas_totales = [] # Lista de recompensas por episodio
-
-        self.epsilons = [] # Épsilon (exploración) por episodio
-
-        self.tasa_exito = [] # Tasa de decisiones correctas por episodio
-
-    def guardar_episodio(self, episodio, recompensa_obtenida, epsilon, aciertos, acciones_tomadas):
-        # Guarda los episodios de aprendizaje del agente
-
+    def guardar_episodio(self, episodio, recompensa_obtenida, epsilon, aciertos,
+                         acciones_tomadas, q_table=None):
         self.episodios.append(episodio)
         self.recompensas_totales.append(recompensa_obtenida)
         self.epsilons.append(epsilon)
-
-        exito = 0
-        if acciones_tomadas > 0:
-            exito = aciertos / acciones_tomadas
-
+        exito = (aciertos / acciones_tomadas) if acciones_tomadas > 0 else 0
         self.tasa_exito.append(exito)
+        if q_table is not None:
+            self.q_tables.append(q_table)
 
-    def obtener_metricas(self): # Obtiene las métricas para ser mostradas en la página web
+    def obtener_metricas(self):
         return {
             "episodios": self.episodios,
             "recompensas_totales": self.recompensas_totales,
             "epsilons": self.epsilons,
-            "tasa_exito": self.tasa_exito
+            "tasa_exito": self.tasa_exito,
+            "q_tables": self.q_tables
         }
 
-    def reset(self): # Reinicia las métricas al presionar un botón de reseteo en la interfaz
+    def reset(self):
         self.__init__()

@@ -1,26 +1,43 @@
-N_ESTADOS = 3
-# 0 = Okay, 1 = Sospechoso, 2 = Peligroso
+N_ESTADOS = 20
+N_ACCIONES = 4
 
-N_ACCIONES = 3
-# 0 = Permitir, 1 = Investigar, 2 = Bloquear
-
-ALPHA = 0.1 # Tasa de aprendizaje
-GAMMA = 0.95 # Importancia del futuro
-EPSILON = 0.2 # Exploración inicial
-
-EPSILON_MIN = 0.05 # Mínimo valor de épsilon
-EPSILON_DECAY = 0.995 # Factor de decrecimiento de épsilon por episodio
-
-RECOMPENSA_OKAY_BIEN = 2
-RECOMPENSA_OKAY_MAL = -5
-
-RECOMPENSA_SOSPECHOSO_BIEN = 5
-RECOMPENSA_SOSPECHOSO_MAL = -2
-
-RECOMPENSA_PELIGROSO_BIEN = 10
-RECOMPENSA_PELIGROSO_MAL = -10
+ALPHA = 0.1
+GAMMA = 0.95
+EPSILON = 0.3
+EPSILON_MIN = 0.01
+EPSILON_DECAY = 0.995
 
 EPISODIOS = 500
 PASOS_POR_EPISODIO = 50
 
-CORS_ORIGINS = ["*"] # Permitir solicitudes desde cualquier origen
+CORS_ORIGINS = ["*"]
+
+ESTADOS = [
+    "Flujo libre",
+    "Flujo moderado",
+    "Flujo denso",
+    "Congestión leve",
+    "Congestión moderada",
+    "Congestión severa",
+    "Congestión crítica",
+    "Accidente menor",
+    "Accidente múltiple",
+    "Accidente con heridos",
+    "Avería en la vía",
+    "Obras en 1 carril",
+    "Obras multi-carril",
+    "Semáforo fuera de servicio",
+    "Inundación",
+    "Evento masivo",
+    "Protesta o manifestación",
+    "Niebla densa",
+    "Ambulancia en ruta",
+    "Corte programado"
+]
+
+ACCIONES = [
+    "Optimizar semáforos",
+    "Analizar situación",
+    "Desviar tráfico",
+    "Activar emergencia"
+]
