@@ -94,6 +94,13 @@ body {
     align-items: center;
 }
 
+#loading.active {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #050816;
+}
+
 /* Títulos */
 h1 {
     font-size: 3rem;

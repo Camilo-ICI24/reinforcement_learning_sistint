@@ -759,6 +759,14 @@ function irASimulacion() {
     }
 }
 
+window.addEventListener("pageshow", () => {
+    const loadingView = document.getElementById("loading");
+    if (loadingView) {
+        loadingView.classList.remove("active");
+        loadingView.classList.add("hidden");
+    }
+});
+
 optionButtons.forEach((button) => {
     button.addEventListener("click", () => {
         if (button.dataset.action === "simulation") {
