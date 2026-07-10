@@ -5,8 +5,8 @@ import threading
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware as cmw
 from fastapi.responses import StreamingResponse
-from backend.configuracion import CORS_ORIGINS, ESTADOS, ACCIONES, EPISODIOS
-from backend.entrenamiento import entrenar
+from configuracion import CORS_ORIGINS, ESTADOS, ACCIONES, EPISODIOS
+from entrenamiento import entrenar
 
 app = FastAPI(title="Sistema de Agente de Tráfico Inteligente",
               version="1.0.0")
@@ -18,7 +18,7 @@ agente_entrenado = None
 metricas_entrenamiento = None
 velocidad_actual = 1.0
 
-
+# Endpoint raiz donde se presentan los estados y acciones disponibles del sistema
 @app.get("/")
 def inicio():
     return {
@@ -30,16 +30,18 @@ def inicio():
 
 @app.get("/estado-sistema")
 def estado_sistema():
+    # Health-check simple para verificar que el servidor esta operativo
     return {"estado": "ok"}
 
 
 @app.post("/entrenar")
 def entrenar_agente():
+    # Entrena el agente de aprendizaje por refuerzo de forma bloqueante
     global agente_entrenado, metricas_entrenamiento
     agente_entrenado, metricas_entrenamiento = entrenar()
     return {"mensaje": "Entrenamiento concluido exitosamente"}
 
-
+# Contiene y devuelve las métricas acumuladas del ultimo entrenamiento del modelo
 @app.get("/metricas")
 def metricas():
     if metricas_entrenamiento is None:
@@ -49,7 +51,7 @@ def metricas():
     m["acciones"] = ACCIONES
     return m
 
-
+# Devuelve la Q-table obtenida tras el entrenamiento
 @app.get("/qtable")
 def qtable():
     if agente_entrenado is None:
@@ -60,7 +62,7 @@ def qtable():
         "acciones": ACCIONES
     }
 
-
+# Consulta al agente inteligente la acción recomendada para un estado determinado
 @app.get("/funcionamiento")
 def funcionamiento(estado: int):
     if agente_entrenado is None:
@@ -73,19 +75,19 @@ def funcionamiento(estado: int):
         "accion_nombre": ACCIONES[accion]
     }
 
-
+# Retorna las listas de estados y acciones 
 @app.get("/labels")
 def labels():
     return {"estados": ESTADOS, "acciones": ACCIONES}
 
-
+# Cambia la velocidad del streaming de entrenamiento en vivo a voluntad del usuario
 @app.get("/velocidad")
 def actualizar_velocidad(velocidad: float):
     global velocidad_actual
     velocidad_actual = max(0.1, velocidad)
     return {"velocidad": velocidad_actual}
 
-
+# Muestra el código fuente obtenido del archivo qlearning.py
 @app.get("/codigo")
 def codigo():
     ruta = os.path.join(os.path.dirname(__file__), "qlearning.py")
@@ -95,7 +97,7 @@ def codigo():
     except Exception as e:
         return {"error": str(e)}
 
-
+# Ejecuta el entrenamiento en un hilo separado y envía el progreso a la cola 
 def _entrenar_con_queue(q, loop):
     def on_progreso(episodio, datos):
         asyncio.run_coroutine_threadsafe(q.put(datos), loop)
@@ -105,7 +107,7 @@ def _entrenar_con_queue(q, loop):
     agente_entrenado = agente
     metricas_entrenamiento = metrics
 
-
+# Endpoint SSE que muestra el proceso de entrenamiento en vivo en el dashboard
 @app.get("/entrenar-stream")
 async def entrenar_stream(velocidad: float = 1.0):
     global velocidad_actual

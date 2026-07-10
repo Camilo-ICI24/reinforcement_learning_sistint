@@ -6,6 +6,7 @@ class Metrics:
         self.tasa_exito = []
         self.q_tables = []
 
+    # Almacena las métricas resultantes de un episodio de entrenamiento
     def guardar_episodio(self, episodio, recompensa_obtenida, epsilon, aciertos,
                          acciones_tomadas, q_table=None):
         self.episodios.append(episodio)
@@ -16,6 +17,7 @@ class Metrics:
         if q_table is not None:
             self.q_tables.append(q_table)
 
+    # Devuelve un diccionario con el historial de métricas tras un proceso de entrenamiento completo
     def obtener_metricas(self):
         return {
             "episodios": self.episodios,
@@ -25,5 +27,6 @@ class Metrics:
             "q_tables": self.q_tables
         }
 
+    # Reseteo completo a su estado inicial
     def reset(self):
         self.__init__()

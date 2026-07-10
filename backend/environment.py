@@ -1,5 +1,5 @@
 import random
-from backend.configuracion import N_ESTADOS, N_ACCIONES, ESTADOS, ACCIONES
+from configuracion import N_ESTADOS, N_ACCIONES, ESTADOS, ACCIONES
 
 # Matriz de recompensas: 20 estados × 4 acciones
 # Acciones: 0=Optimizar, 1=Analizar, 2=Desviar, 3=Emergencia
@@ -36,15 +36,19 @@ class TrafficEnvironment:
     def __init__(self):
         self.estados = list(range(N_ESTADOS))
 
+    # Comienza un nuevo episodio de entrenamiento tomando un estado cualquiera
     def reiniciar_estados(self):
         return random.choice(self.estados)
 
+    # Devuelve la recompensa obtenida tras una acción tomada en cierto estado
     def obtener_recompensa(self, estado, accion):
         return REWARDS[estado][accion]
 
+    # Cambia el entorno al próximo estado escogido al azar
     def siguiente_estado(self):
         return random.choice(self.estados)
 
+    # Entrega de recompensa y cambio en el entorno
     def paso(self, estado, accion):
         recompensa = self.obtener_recompensa(estado, accion)
         proximo_estado = self.siguiente_estado()

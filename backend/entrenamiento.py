@@ -1,15 +1,14 @@
-import json
-from backend.configuracion import (
+from configuracion import (
     N_ESTADOS, N_ACCIONES, ALPHA, GAMMA, EPSILON,
     EPISODIOS, PASOS_POR_EPISODIO, EPSILON_MIN, EPSILON_DECAY,
     ESTADOS, ACCIONES
 )
-from backend.environment import TrafficEnvironment
-from backend.metricas import Metrics
-from backend.qlearning import QLearningAgent
+from environment import TrafficEnvironment
+from metricas import Metrics
+from qlearning import QLearningAgent
 
 
-def entrenar(progreso=None):
+def entrenar(progreso=None): # Proceso de entrenamiento del agente de aprendizaje por refuerzo
     agente = QLearningAgent(N_ESTADOS, N_ACCIONES, ALPHA, GAMMA,
                             EPSILON, EPSILON_MIN, EPSILON_DECAY)
     ambiente = TrafficEnvironment()
@@ -21,18 +20,29 @@ def entrenar(progreso=None):
         aciertos = 0
 
         for _ in range(PASOS_POR_EPISODIO):
+            # El agente elige una acción según la política definida
             accion = agente.elegir_accion(estado)
+
+            # El ambiente responde a la acción con el estado y recompensa correspondiente
             prox_estado, recompensa = ambiente.paso(estado, accion)
+
+            # Aprendizaje por refuerzo
             agente.actualizar(estado, accion, recompensa, prox_estado)
+
+            # Se actualizan las métricas
             recompensa_total += recompensa
+
             if recompensa > 0:
                 aciertos += 1
+
+            # El estado avanza
             estado = prox_estado
 
+        # Cambia el épsilon para el siguiente episodio
         agente.decaer_epsilon()
 
         q_table = agente.obtener_q_table()
-        metricas.guardar_episodio(
+        metricas.guardar_episodio( # Guardar las métricas del episodio
             episodio=episodio,
             recompensa_obtenida=recompensa_total,
             epsilon=agente.epsilon,
