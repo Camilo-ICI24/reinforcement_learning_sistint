@@ -1,0 +1,10 @@
+services:
+  rl-backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+
+  rl-frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
