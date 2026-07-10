@@ -25,10 +25,18 @@
                 <p>Elige cómo quieres entender el aprendizaje por refuerzo aplicado a detección de anomalías.</p>
             </div>
 
-            <a class="back-link" href="../">
-                <i class="fa-solid fa-arrow-left"></i>
-                Inicio
-            </a>
+            <div class="header-actions">
+                <a class="back-link" href="../">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Inicio
+                </a>
+                <div id="undo-container" class="undo-container hidden">
+                    <button id="btn-deshacer-modo" class="undo-btn">
+                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                        Deshacer selección
+                    </button>
+                </div>
+            </div>
         </header>
 
         <section class="learn-menu cyber-panel neon-green" aria-label="Opciones de aprendizaje">

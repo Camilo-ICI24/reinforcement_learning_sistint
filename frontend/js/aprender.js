@@ -627,13 +627,20 @@ function botonActivo(botonSeleccionado) {
     });
 }
 
-/* Deshabilita todos los botones excepto el seleccionado */
-function deshabilitarOpciones(botonSeleccionado) {
+function bloquearModoAprendizaje(botonSeleccionado) {
     optionButtons.forEach((boton) => {
         if (boton !== botonSeleccionado) {
             boton.disabled = true;
         }
     });
+    const undoContainer = document.getElementById("undo-container");
+    if (undoContainer) undoContainer.classList.remove("hidden");
+}
+
+function desbloquearModoAprendizaje() {
+    habilitarOpciones();
+    const undoContainer = document.getElementById("undo-container");
+    if (undoContainer) undoContainer.classList.add("hidden");
 }
 
 /* Habilita todos los botones de opción */
@@ -742,6 +749,7 @@ function mostrarMensajeCompletado() {
     consoleMode.textContent = "¡Completado!";
     consoleProgress.textContent = "✅";
 
+    desbloquearModoAprendizaje();
     habilitarOpciones();
 }
 
@@ -1086,9 +1094,32 @@ optionButtons.forEach((button) => {
         }
 
         if (button.dataset.mode === "semi" || button.dataset.mode === "technical") {
-            deshabilitarOpciones(button);
+            bloquearModoAprendizaje(button);
         }
 
         cambiarModoAprendizaje(button.dataset.mode, button);
     });
+});
+
+document.addEventListener("click", (event) => {
+    const btn = event.target.closest("#btn-deshacer-modo");
+    if (!btn) return;
+    desbloquearModoAprendizaje();
+    stepActual = 0;
+    modoAprendizajeActual = null;
+    definicionMostrada = false;
+    document.querySelectorAll(".console-img-text-container, .console-img-card, #console-text-2")
+        .forEach((el) => el.remove());
+    consoleText.textContent = "Escoge tu tipo de aprendizaje antes de comenzar";
+    consoleActions.innerHTML = "";
+    consoleMode.textContent = "Sin ruta seleccionada";
+    consoleProgress.textContent = "0/0";
+    optionButtons.forEach((boton) => {
+        boton.classList.remove("active");
+    });
+    document.querySelectorAll(".source-item").forEach((el) => el.remove());
+    const refsContent = document.getElementById("console-refs-content");
+    if (refsContent) {
+        refsContent.innerHTML = "<p>Las fuentes aparecerán cuando selecciones un tipo de aprendizaje.</p>";
+    }
 });
