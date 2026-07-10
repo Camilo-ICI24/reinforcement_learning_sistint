@@ -7,6 +7,14 @@ Plataforma educativa interactiva en sitio web para aprender el concepto del apre
 ## Tabla de Contenidos
 
 - [Descripción](#descripción)
+- [Decisiones de Diseño](#decisiones-de-diseño)
+  - [¿Por qué Q-Learning?](#por-qué-q-learning)
+  - [¿Por qué FastAPI?](#por-qué-fastapi)
+  - [¿Por qué SSE en lugar de WebSockets?](#por-qué-sse-en-lugar-de-websockets)
+  - [¿Por qué SCORM?](#por-qué-scorm)
+  - [¿Por qué un juego?](#por-qué-un-juego)
+  - [¿Por qué estos endpoints?](#por-qué-estos-endpoints)
+  - [¿Por qué el diseño *cyberpunk* y las partículas animadas?](#por-qué-el-diseño-cyberpunk-y-las-partículas-animadas)
 - [Características](#características)
   - [Backend](#backend)
   - [Frontend](#frontend)
@@ -44,6 +52,50 @@ Este proyecto es una plataforma educativa integral sobre el aprendizaje por refu
 4. Jugar como un agente de tráfico, tomando decisiones y viendo cómo las recompensas guían el aprendizaje por refuerzo.
 
 El backend implementa un agente Q-Learning clásico desde cero a través de NumPy, expuesto mediante una API FastAPI con soporte para eventos enviados por el servidor (SSE) que permite ver el entrenamiento episodio por episodio en vivo.
+
+---
+
+## Decisiones de Diseño
+
+### ¿Por qué Q-Learning?
+
+Aunque el aprendizaje por refuerzo contempla y utiliza múltiples algoritmos, se eligió Q-Learning por ser el más didáctico para introducir el área: su ecuación de Bellman asociada es intuitiva, se implementa sin dependencias complejas y la tabla Q obtenida como resultado es visualmente interpretable. Alternativas como SARSA, gradiente de política o Deep Q-Networks (DQN) aportan ventajas en ciertos escenarios, pero añaden complejidad innecesaria para un proyecto cuyo objetivo principal es educativo.
+
+### ¿Por qué FastAPI?
+
+El backend fue desarrollado con FastAPI debido a las facilidades que ofrece para la construcción de APIs modernas. El framework genera documentación interactiva de forma automática, incorpora validación y modelado de datos mediante la biblioteca **Pydantic**, y permite implementar respuestas en tiempo real utilizando `StreamingResponse`, funcionalidad empleada para transmitir el progreso del entrenamiento al frontend. Estas características reducen la cantidad de configuración adicional necesaria en comparación con otras alternativas, como Flask.
+
+### ¿Por qué SSE en lugar de WebSockets?
+
+El dashboard solo necesita recibir actualizaciones del entrenamiento desde el backend, por lo que una comunicación unidireccional es suficiente. Debido a esto, se utilizaron Eventos Enviados por el Servidor(SSE), que permiten enviar datos en tiempo real sobre HTTP estándar utilizando `EventSource` en el navegador, evitando la complejidad adicional que supondría implementar WebSockets.
+
+### ¿Por qué SCORM?
+
+El Modelo de Referencia de Objetos Contenidos Compartidos (*Sharable Content Object Reference Model*, SCORM) es el estándar de la industria para contenido educativo usado en plataformas de aprendizaje como Moodle. Al empaquetar los cursos de RL en SCORMs, el contenido puede reutilizarse en cualquier plataforma educativa. Adicionalmente, estructurar el aprendizaje en niveles, como semitécnico y técnico, permite que tanto personas sin experiencia previa en IA como gente con conocimiento especializado en el área puedan entender los conceptos.
+
+### ¿Por qué un juego?
+
+El juego interactivo *Urban Learner* fue pensado y diseñado bajo el enfoque de *aprender haciendo*, permitiendo que los usuarios experimenten directamente conceptos fundamentales del aprendizaje por refuerzo, como la exploración y explotación, el sistema de recompensas y la toma de decisiones secuenciales. A través de la interacción y la experimentación constante, el usuario deja de ser un observador pasivo y pasa a participar activamente en el proceso, facilitando la comprensión de conceptos abstractos y generando una experiencia de aprendizaje más significativa.
+
+### ¿Por qué estos endpoints?
+
+Cada endpoint cubre una necesidad específica del frontend:
+
+| Endpoint | Necesidad |
+|----------|-----------|
+| `GET /` | Presentar la API y los datos disponibles, como estados y acciones |
+| `POST /entrenar` | Entrenamiento bloqueante para pruebas rápidas |
+| `GET /entrenar-stream` | Dashboard en vivo con SSE |
+| `GET /metricas` | Gráficos de recompensa y tasa de éxito |
+| `GET /qtable` | Visualizar la Q-table aprendida |
+| `GET /funcionamiento` | Consulta interactiva "¿qué haría el agente?" |
+| `GET /codigo` | Mostrar el código fuente resaltado en el frontend |
+
+### ¿Por qué el diseño *cyberpunk* y las partículas animadas?
+
+La estética *cyberpunk* fue seleccionada debido a su estrecha asociación con conceptos como la *inteligencia artificial, los sistemas inteligentes y los entornos tecnológicos futuristas*, lo que permite generar una atmósfera inmersiva y coherente con la temática del proyecto.
+
+Por otra parte, las partículas animadas implementadas mediante la Canvas API representan visualmente el flujo constante de datos e información, estableciendo una analogía con el tráfico y las decisiones que el agente debe gestionar durante el proceso de aprendizaje. Además de aportar dinamismo a la interfaz, estos elementos ayudan a mantener el interés y la atención del usuario sin interferir con el contenido educativo ni afectar la usabilidad de la plataforma.
 
 ---
 
@@ -299,6 +351,20 @@ El juego (`frontend/jugando/`) es una simulación interactiva donde el jugador a
 3. El jugador elige una de 4 acciones: **Optimizar**, **Analizar**, **Emergencia** o **Esperar**.
 4. El sistema muestra una retroalimentación inmediata: si fue correcto, casi correcto, o incorrecto, junto con la recompensa obtenida y una explicación.
 5. Al finalizar el juego, se muestra la recompensa total acumulada y un ranking asociado a dicha puntuación (Bronce/Plata/Oro).
+
+---
+
+## Rutas del Frontend
+
+El frontend consiste en una aplicación de página única (*Single Page Application*, SPA) desarrollada en HTML, CSS y JavaScript, ejecutada de manera local en `http://localhost:3000`.
+
+
+| Ruta | Vista | Descripción |
+|------|-------|-------------|
+| `/` | Inicio | Página principal con animación de partículas cyberpunk |
+| `/aprender/` | Aprender | Cursos SCORM (nivel técnico y semitécnico) con quizzes interactivos |
+| `/jugando/` | Urban Learner | Juego de simulación donde tomas decisiones como agente de tráfico |
+| `/vista-practica/` | Dashboard | Entrenamiento en vivo del modelo Q-Learning con gráficos y tabla Q |
 
 ---
 
