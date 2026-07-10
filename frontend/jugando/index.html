@@ -106,6 +106,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="audio-sidebar">
+                            <button id="btn-audio-toggle" class="audio-sidebar-toggle">
+                                <span><i class="fa-solid fa-music"></i> Audio</span>
+                                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                            </button>
+                            <div class="audio-sidebar-content" id="audio-sidebar-content">
+                                <div class="audio-control-row">
+                                    <button id="btn-mute" class="audio-toggle" aria-label="Silenciar">
+                                        <i class="fa-solid fa-volume-high"></i>
+                                    </button>
+                                    <input type="range" id="slider-volumen" class="audio-slider" min="0" max="100" value="50" aria-label="Volumen">
+                                </div>
+                            </div>
+                        </div>
                     </aside>
                 </div>
 
@@ -133,6 +147,10 @@
             </section>
         </main>
     </div>
+
+    <audio id="bg-audio" loop preload="auto">
+        <source src="reinforcementlearning_game_audio.m4a" type="audio/mp4">
+    </audio>
 
     <script src="/datos/curiosidades.js"></script>
     <script src="/js/particulas.js"></script>

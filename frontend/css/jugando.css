@@ -27,6 +27,99 @@
     margin-bottom: 40px;
 }
 
+/* Control de audio deslizable en sidebar */
+.audio-sidebar {
+    margin-top: 8px;
+    background: rgba(5, 8, 22, 0.55);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.audio-sidebar-toggle {
+    width: 100%;
+    padding: 10px 14px;
+    background: none;
+    border: none;
+    color: #a78bfa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.audio-sidebar-toggle:hover {
+    background: rgba(168, 85, 247, 0.08);
+}
+
+.audio-sidebar-toggle span i {
+    margin-right: 6px;
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+    font-size: 0.75rem;
+}
+
+.toggle-icon.open {
+    transform: rotate(180deg);
+}
+
+.audio-sidebar-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.audio-sidebar-content.open {
+    max-height: 50px;
+}
+
+.audio-control-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px 10px;
+}
+
+.audio-toggle {
+    background: none;
+    border: none;
+    color: #a78bfa;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.audio-toggle:hover {
+    color: #c4b5fd;
+}
+
+.audio-slider {
+    flex: 1;
+    height: 4px;
+    accent-color: #a78bfa;
+    cursor: pointer;
+    min-width: 0;
+}
+
+@media (max-width: 860px) {
+    .audio-sidebar {
+        margin-top: 6px;
+    }
+
+    .audio-control-row {
+        padding: 0 12px 8px;
+    }
+}
+
 .jugando-header h1 {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 800;

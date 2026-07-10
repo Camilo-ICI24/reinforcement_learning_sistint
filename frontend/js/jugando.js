@@ -228,11 +228,80 @@ function iniciarJuego() {
     habilitarAcciones(true);
 }
 
+let audioIniciado = false;
+
+function iniciarAudio() {
+    if (audioIniciado) return;
+    const audio = document.getElementById('bg-audio');
+    if (!audio) return;
+    audio.volume = parseInt(document.getElementById('slider-volumen').value) / 100;
+    audio.play().then(() => {
+        audioIniciado = true;
+    }).catch(() => {
+        /* El navegador bloqueó autoplay; se iniciará en el primer click */
+        document.addEventListener('click', iniciarAudio, { once: true });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const btnRegresar = document.getElementById('btn-regresar');
     const btnJugar = document.getElementById('btn-jugar');
     const btnReiniciar = document.getElementById('btn-reiniciar');
     const btnSalir = document.getElementById('btn-salir');
+
+    /* Audio: toggle deslizable en sidebar */
+    const btnAudioToggle = document.getElementById('btn-audio-toggle');
+    const audioContent = document.getElementById('audio-sidebar-content');
+    if (btnAudioToggle && audioContent) {
+        btnAudioToggle.addEventListener('click', () => {
+            audioContent.classList.toggle('open');
+            btnAudioToggle.querySelector('.toggle-icon').classList.toggle('open');
+        });
+    }
+
+    /* Audio: mute toggle */
+    const btnMute = document.getElementById('btn-mute');
+    const sliderVol = document.getElementById('slider-volumen');
+    const audio = document.getElementById('bg-audio');
+
+    if (btnMute && sliderVol && audio) {
+        let muted = false;
+        let volAntes = parseFloat(sliderVol.value) / 100;
+
+        sliderVol.addEventListener('input', () => {
+            const v = parseFloat(sliderVol.value) / 100;
+            audio.volume = v;
+            volAntes = v;
+            muted = v === 0;
+            btnMute.innerHTML = v === 0
+                ? '<i class="fa-solid fa-volume-xmark"></i>'
+                : v < 0.5
+                    ? '<i class="fa-solid fa-volume-low"></i>'
+                    : '<i class="fa-solid fa-volume-high"></i>';
+        });
+
+        btnMute.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (muted) {
+                audio.volume = volAntes || 0.5;
+                sliderVol.value = (volAntes || 0.5) * 100;
+                muted = false;
+            } else {
+                volAntes = audio.volume;
+                audio.volume = 0;
+                sliderVol.value = 0;
+                muted = true;
+            }
+            btnMute.innerHTML = muted
+                ? '<i class="fa-solid fa-volume-xmark"></i>'
+                : audio.volume < 0.5
+                    ? '<i class="fa-solid fa-volume-low"></i>'
+                    : '<i class="fa-solid fa-volume-high"></i>';
+        });
+    }
+
+    /* Iniciar audio al cargar la página */
+    iniciarAudio();
 
     fetch('/datos/estados.json')
         .then(res => res.json())
