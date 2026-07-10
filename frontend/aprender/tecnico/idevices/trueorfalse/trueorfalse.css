@@ -116,6 +116,12 @@
     border-radius: 0.3em;
     padding: 1em;
     margin-bottom: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.TOFP-QuestionDiv .TOFP-Answers {
+    margin-top: auto;
 }
 
 .TOFP-QuestionDivBlack {

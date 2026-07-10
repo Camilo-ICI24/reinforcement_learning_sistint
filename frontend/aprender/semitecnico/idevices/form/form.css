@@ -58,6 +58,8 @@
     padding: .5em 0;
     overflow: auto;
     clear: both;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-IDevice ul.FRMP-PREVIEW .FormView_question::after {
@@ -77,6 +79,9 @@
 .form-IDevice .FormViewContainer {
     overflow: auto;
     clear: both;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .form-IDevice .FormViewContainer::after {
@@ -101,6 +106,11 @@
 .form-IDevice ul.FRMP-PREVIEW .FormView_question input[type="radio"],
 .form-IDevice ul.FRMP-PREVIEW .FormView_question input[type="checkbox"] {
     margin-right: 4px !important;
+}
+
+.form-IDevice .FormViewContainer .selection-buttons-container,
+.form-IDevice .FormViewContainer .true-false-radio-buttons-container {
+    margin-top: auto;
 }
 
 .form-IDevice ul.FRMP-PREVIEW {
