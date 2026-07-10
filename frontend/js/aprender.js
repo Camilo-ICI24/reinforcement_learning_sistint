@@ -599,6 +599,7 @@ let timeoutEscritura = null; /* Imprime texto caracter por caracter */
 let escribiendo = false; /* Indica si se está escribiendo la lección */
 let definicionMostrada = false; /* Se muestra la definición del término o no */
 let quizActualIndex = 0; /* Índice del quiz actual cuando hay múltiples quizzes en un paso */
+let quizReintentarDesde = null; /* Índice desde el cual reintentar el quiz tras fallar */
 
 /* Obtiene la ruta de aprendizaje (semi-técnico o técnico) */
 function obtenerRuta() {
@@ -732,6 +733,7 @@ function escribirTexto(text, onComplete) {
 /* Muestra la definición de los conceptos presentados en la lección */
 function mostrarDefinicion() {
     quizActualIndex = 0;
+    quizReintentarDesde = null;
     const step = obtenerStep();
     definicionMostrada = true;
     document.querySelectorAll(".console-img-text-container, .console-img-card, #console-text-2").forEach((el) => el.remove());
@@ -741,6 +743,7 @@ function mostrarDefinicion() {
 /* Muestra el mensaje de finalización del curso */
 function mostrarMensajeCompletado() {
     quizActualIndex = 0;
+    quizReintentarDesde = null;
     limpiarEscritura();
     document.querySelectorAll(".console-img-text-container, .console-img-card, #console-text-2").forEach((el) => el.remove());
 
@@ -891,6 +894,10 @@ function mostrarResultadoQuiz(acierto, fbCorrecto, fbIncorrecto) {
         const paso = obtenerStep();
         const hayMasQuizzes = Array.isArray(paso.quiz) && quizActualIndex < paso.quiz.length - 1;
 
+        if (!hayMasQuizzes) {
+            quizReintentarDesde = null;
+        }
+
         if (hayMasQuizzes) {
             const btn = document.createElement("button");
             btn.textContent = "Siguiente pregunta";
@@ -913,6 +920,7 @@ function mostrarResultadoQuiz(acierto, fbCorrecto, fbIncorrecto) {
             consoleActions.appendChild(btn);
         }
     } else {
+        quizReintentarDesde = quizActualIndex;
         const btn = document.createElement("button");
         btn.textContent = "Ver lección otra vez";
         btn.className = "console-action";
@@ -993,6 +1001,7 @@ function mostrarLeccionCompletaInstantanea() {
 /* Renderiza el step actual con soporte para imagen en cualquier step */
 function renderizarStepActual() {
     quizActualIndex = 0;
+    quizReintentarDesde = null;
     definicionMostrada = false;
     actualizarConsola();
 
@@ -1017,7 +1026,7 @@ consoleActions.addEventListener("click", (event) => {
     const accion = botonDeAccion.dataset.action;
 
     if (accion === "quiz-agente") {
-        quizActualIndex = 0;
+        quizActualIndex = quizReintentarDesde !== null ? quizReintentarDesde : 0;
         mostrarCuestionarioAgente();
         return;
     }
